@@ -1,5 +1,6 @@
+package main;
 
-public class Proveidor {
+public class Empresa {
 
 	/**
 	 * @param args

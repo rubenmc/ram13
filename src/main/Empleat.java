@@ -1,5 +1,6 @@
+package main;
 
-public class Client {
+public class Empleat {
 
 	/**
 	 * @param args

@@ -1,3 +1,4 @@
+package main;
 import java.sql.*;
 
 import com.mysql.jdbc.CommunicationsException;

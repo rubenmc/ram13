@@ -1,5 +1,6 @@
+package main;
 
-public class Joc {
+public class Unitat {
 
 	/**
 	 * @param args

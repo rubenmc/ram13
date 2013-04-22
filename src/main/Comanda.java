@@ -1,5 +1,6 @@
+package main;
 
-public class Unitat {
+public class Comanda {
 
 	/**
 	 * @param args

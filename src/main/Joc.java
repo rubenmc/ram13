@@ -1,5 +1,6 @@
+package main;
 
-public class Comanda {
+public class Joc {
 
 	/**
 	 * @param args

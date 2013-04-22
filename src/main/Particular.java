@@ -1,5 +1,6 @@
+package main;
 
-public class Empleat {
+public class Particular {
 
 	/**
 	 * @param args
