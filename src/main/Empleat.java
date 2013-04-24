@@ -7,10 +7,10 @@ public class Empleat {
 	private String nom;
 	private String SS;
 	private String DNI;
-	private Tenda tenda;
+	private int tenda;
 
+	//Constructor
 	/**
-	 * Constructor
 	 * @param id
 	 * @param vendes
 	 * @param nom
@@ -19,7 +19,7 @@ public class Empleat {
 	 * @param tenda
 	 */
 	public Empleat(int id, int vendes, String nom, String SS, String DNI,
-			Tenda tenda) {
+			int tenda) {
 		this.id = id;
 		this.vendes = vendes;
 		this.nom = nom;
@@ -28,9 +28,8 @@ public class Empleat {
 		this.tenda = tenda;
 	}
 
-	/**
-	 * Getters i Setters
-	 */
+	
+	//Getters i Setters
 	/**
 	 * @return the id
 	 */
@@ -109,7 +108,7 @@ public class Empleat {
 	/**
 	 * @return the tenda
 	 */
-	public Tenda getTenda() {
+	public int getTenda() {
 		return tenda;
 	}
 
@@ -117,13 +116,10 @@ public class Empleat {
 	 * @param tenda
 	 *            the tenda to set
 	 */
-	public void setTenda(Tenda tenda) {
+	public void setTenda(int tenda) {
 		this.tenda = tenda;
 	}
 	
-	/**
-	 * Metodes
-	 */
 	@Override
 	public String toString() {
 		return nom;

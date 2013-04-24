@@ -3,26 +3,24 @@ package main;
 public class Unitat {
 
 	private int id;
-	private Tenda tenda;
-	private Joc joc;
+	private int tenda;
+	private int joc;
 
-	/**
-	 * Constructor
-	 * 
+	
+	//Constructor
+	/** 
 	 * @param id
 	 * @param tenda
 	 * @param joc
 	 */
-	public Unitat(int id, Tenda tenda, Joc joc) {
+	public Unitat(int id, int tenda, int joc) {
 		this.id = id;
 		this.tenda = tenda;
 		this.joc = joc;
 	}
 
-	/**
-	 * Getters i Setters
-	 */
-
+	
+	//Getters i Setters
 	/**
 	 * @return the id
 	 */
@@ -41,7 +39,7 @@ public class Unitat {
 	/**
 	 * @return the tenda
 	 */
-	public Tenda getTenda() {
+	public int getTenda() {
 		return tenda;
 	}
 
@@ -49,14 +47,14 @@ public class Unitat {
 	 * @param tenda
 	 *            the tenda to set
 	 */
-	public void setTenda(Tenda tenda) {
+	public void setTenda(int tenda) {
 		this.tenda = tenda;
 	}
 
 	/**
 	 * @return the joc
 	 */
-	public Joc getJoc() {
+	public int getJoc() {
 		return joc;
 	}
 
@@ -64,19 +62,24 @@ public class Unitat {
 	 * @param joc
 	 *            the joc to set
 	 */
-	public void setJoc(Joc joc) {
+	public void setJoc(int joc) {
 		this.joc = joc;
 	}
 
 	@Override
 	public String toString() {
-		return joc.getNom() + "." + id;
+		return joc + "." + id;
 	}
 
 	public void display() {
-		System.out.println("\nDades de la unitat " + id + " del joc"
-				+ joc.getNom() + "\nTenda-->" + tenda.getId() + "\nPreu-->"
-				+ joc.getPreu());
+		System.out.println("\nDades de la unitat " + id + " del joc "
+				+ joc + "\nTenda-->" + tenda + "\nPreu-->"
+				+ joc);
+	}
+	
+	public float getPreu() {
+		//Consulta a BD utilizando el ID del juego y devolviendo el precio
+		return 0;
 	}
 
 }

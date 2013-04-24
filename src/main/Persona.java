@@ -8,9 +8,9 @@ public abstract class Persona {
 	private String NIF;
 	private String mail;
 
+	
+	//Constructor
 	/**
-	 * Constructor
-	 * 
 	 * @param nom
 	 * @param telf
 	 * @param NIF
@@ -24,10 +24,8 @@ public abstract class Persona {
 		this.mail = mail;
 	}
 
-	/**
-	 * Getters i Setters
-	 */
-
+	
+	//Getters i Setters
 	/**
 	 * @return the id
 	 */

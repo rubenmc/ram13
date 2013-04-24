@@ -5,6 +5,7 @@ public class Proveidor extends Persona {
 	private String personaContacte;
 	private String compteCorrent;
 
+	//Constructor
 	public Proveidor(int id, String nom, String telf, String NIF, String mail,
 			String persona, String compte) {
 		super(id, nom, telf, NIF, mail);
@@ -12,6 +13,7 @@ public class Proveidor extends Persona {
 		this.compteCorrent = compte;
 	}
 
+	//Getters i Setters
 	/**
 	 * @return the personaContacte
 	 */
@@ -35,7 +37,7 @@ public class Proveidor extends Persona {
 	}
 
 	/**
-	 * @param compteCorrent
+	 * @param compte
 	 *            the compteCorrent to set
 	 */
 	public void setCompteCorrent(String compte) {

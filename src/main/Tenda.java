@@ -6,9 +6,9 @@ public class Tenda {
 	private String direccio;
 	private String telefon;
 
-	/**
-	 * Constructor
-	 * 
+	
+	 //Constructor
+	/** 
 	 * @param id
 	 * @param direccio
 	 * @param telefon
@@ -19,9 +19,8 @@ public class Tenda {
 		this.telefon = telefon;
 	}
 
-	/**
-	 * Getters i Setters
-	 */
+	
+	//Getters i Setters
 	/**
 	 * @return the id
 	 */

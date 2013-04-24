@@ -2,21 +2,20 @@ package main;
 
 public class Joc {
 
-	private Proveidor proveidor;
+	private int proveidor;
 	private String nom;
 	private String genere;
 	private float preu;
 	private int id;
 
-	/**
-	 * Constructor
-	 * 
+	//Constructor
+	/** 
 	 * @param id
 	 * @param nom
 	 * @param proveidor
 	 * @param preu
 	 */
-	public Joc(int id, String nom, Proveidor proveidor, float preu,
+	public Joc(int id, String nom, int proveidor, float preu,
 			String genere) {
 		this.id = id;
 		this.nom = nom;
@@ -25,14 +24,12 @@ public class Joc {
 		this.genere = genere;
 	}
 
-	/**
-	 * Getters i Setters
-	 */
-
+	
+	// Getters i Setters
 	/**
 	 * @return the proveidor
 	 */
-	public Proveidor getProveidor() {
+	public int getProveidor() {
 		return proveidor;
 	}
 
@@ -40,7 +37,7 @@ public class Joc {
 	 * @param proveidor
 	 *            the proveidor to set
 	 */
-	public void setProveidor(Proveidor proveidor) {
+	public void setProveidor(int proveidor) {
 		this.proveidor = proveidor;
 	}
 
@@ -111,7 +108,7 @@ public class Joc {
 
 	public void display() {
 		System.out.println("\nDades del joc " + nom + "\nProveidor-->"
-				+ proveidor.getNom() + "\nPreu-->" + preu + "\nGenere-->"
+				+ proveidor + "\nPreu-->" + preu + "\nGenere-->"
 				+ genere);
 	}
 }
