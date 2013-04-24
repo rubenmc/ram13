@@ -42,6 +42,11 @@ public class Proveidor extends Persona {
 		this.compteCorrent = compte;
 	}
 
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+
 	public void display() {
 		super.display();
 		System.out.println("Persona de contacte-->" + personaContacte

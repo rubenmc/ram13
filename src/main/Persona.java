@@ -103,6 +103,11 @@ public abstract class Persona {
 		this.mail = mail;
 	}
 
+	@Override
+	public String toString() {
+		return nom;
+	}
+
 	public void display() {
 		System.out.println("\nDades del client " + nom + "\nNIF-->" + NIF
 				+ "\nTelefon-->" + telf + "\nMail-->" + mail);

@@ -25,6 +25,11 @@ public class Mayorista extends Persona {
 		this.personaContacte = personaContacte;
 	}
 
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+
 	public void display() {
 		super.display();
 		System.out.println("Persona de contacte-->" + personaContacte);

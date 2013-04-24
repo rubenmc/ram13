@@ -27,6 +27,11 @@ public class Particular extends Persona {
 		this.dataNaixement = data;
 	}
 
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+
 	public void display() {
 		super.display();
 		System.out.println("Data de naixement-->" + dataNaixement);
