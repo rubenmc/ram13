@@ -8,15 +8,14 @@ public class Joc {
 	private float preu;
 	private int id;
 
-	//Constructor
-	/** 
+	// Constructor
+	/**
 	 * @param id
 	 * @param nom
 	 * @param proveidor
 	 * @param preu
 	 */
-	public Joc(int id, String nom, int proveidor, float preu,
-			String genere) {
+	public Joc(int id, String nom, int proveidor, float preu, String genere) {
 		this.id = id;
 		this.nom = nom;
 		this.proveidor = proveidor;
@@ -24,7 +23,6 @@ public class Joc {
 		this.genere = genere;
 	}
 
-	
 	// Getters i Setters
 	/**
 	 * @return the proveidor
@@ -108,7 +106,6 @@ public class Joc {
 
 	public void display() {
 		System.out.println("\nDades del joc " + nom + "\nProveidor-->"
-				+ proveidor + "\nPreu-->" + preu + "\nGenere-->"
-				+ genere);
+				+ proveidor + "\nPreu-->" + preu + "\nGenere-->" + genere);
 	}
 }

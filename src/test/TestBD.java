@@ -2,8 +2,6 @@ package test;
 
 import java.sql.*;
 
-import com.mysql.jdbc.CommunicationsException;
-
 public class TestBD {
 
 	public static void main(String[] args) {
@@ -13,7 +11,7 @@ public class TestBD {
 
 			// Crear conexio
 			Connection conexion = DriverManager.getConnection(
-					"jdbc:mysql://localhost/m13", "root", "");
+					"jdbc:mysql://192.168.1.35/m13", "root", "serverm13");
 
 			// Crear consulta
 			Statement sentencia = conexion.createStatement();
@@ -25,7 +23,9 @@ public class TestBD {
 			System.out
 					.println("--------------------\nPROBA DE CONNEXIO\n--------------------");
 			while (resul.next()) {
-				System.out.println(resul.getString(1));
+				System.out.println(resul.getInt(1));
+				System.out.println(resul.getString(2));
+				System.out.println(resul.getString(3));
 			}
 
 			// Tanquem
@@ -35,8 +35,6 @@ public class TestBD {
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("ClassNotFoundException");
-		} catch (CommunicationsException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -9,7 +9,7 @@ public class Empleat {
 	private String DNI;
 	private int tenda;
 
-	//Constructor
+	// Constructor
 	/**
 	 * @param id
 	 * @param vendes
@@ -28,8 +28,7 @@ public class Empleat {
 		this.tenda = tenda;
 	}
 
-	
-	//Getters i Setters
+	// Getters i Setters
 	/**
 	 * @return the id
 	 */
@@ -119,16 +118,15 @@ public class Empleat {
 	public void setTenda(int tenda) {
 		this.tenda = tenda;
 	}
-	
+
 	@Override
 	public String toString() {
 		return nom;
 	}
 
 	public void display() {
-		System.out.println("\nDades de l'empleat " + nom + "\nNº SS-->"
-				+ SS + "\nDNI-->" + DNI + "\nTenda-->"
-				+ tenda+ "\nVendes-->"
+		System.out.println("\nDades de l'empleat " + nom + "\nNº SS-->" + SS
+				+ "\nDNI-->" + DNI + "\nTenda-->" + tenda + "\nVendes-->"
 				+ vendes);
 	}
 

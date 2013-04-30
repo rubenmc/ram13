@@ -12,22 +12,31 @@ public class Compra {
 	private Unitat[] articles;
 	private float preu;
 	private Date data;
-	SimpleDateFormat formateador = new SimpleDateFormat("d 'de' MMMM 'de' yyyy - HH:mm", new Locale("es"));
-	
-	//Constructor
+	SimpleDateFormat formateador = new SimpleDateFormat(
+			"d 'de' MMMM 'de' yyyy - HH:mm", new Locale("es"));
+
+	// Constructor
 	public Compra(int id, int client, int venedor, Unitat[] article,
-			float preu, Date data) {
+			Date data) {
 		this.id = id;
 		this.client = client;
 		this.venedor = venedor;
 		this.articles = article;
-		this.preu = preu;
-		this.data=data;
+		this.data = data;
+		calculaPreu(article);
 	}
 
-	
+	/**
+	 * @param article
+	 * 					calculate de preu
+	 */
+	private void calculaPreu(Unitat[] article) {
+		for(int x =0;x<article.length;x++){
+			preu += article[x].getPreu();
+		}
+	}
 
-	//Getters i Setters
+	// Getters i Setters
 	/**
 	 * @return the id
 	 */
@@ -36,7 +45,8 @@ public class Compra {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
@@ -50,7 +60,8 @@ public class Compra {
 	}
 
 	/**
-	 * @param client the client to set
+	 * @param client
+	 *            the client to set
 	 */
 	public void setClient(int client) {
 		this.client = client;
@@ -64,7 +75,8 @@ public class Compra {
 	}
 
 	/**
-	 * @param venedor the venedor to set
+	 * @param venedor
+	 *            the venedor to set
 	 */
 	public void setVenedor(int venedor) {
 		this.venedor = venedor;
@@ -78,7 +90,8 @@ public class Compra {
 	}
 
 	/**
-	 * @param article the article to set
+	 * @param article
+	 *            the article to set
 	 */
 	public void setArticle(Unitat[] article) {
 		this.articles = article;
@@ -92,12 +105,13 @@ public class Compra {
 	}
 
 	/**
-	 * @param preu the preu to set
+	 * @param preu
+	 *            the preu to set
 	 */
 	public void setPreu(float preu) {
 		this.preu = preu;
 	}
-	
+
 	/**
 	 * @return the data
 	 */
@@ -106,7 +120,8 @@ public class Compra {
 	}
 
 	/**
-	 * @param data the data to set
+	 * @param data
+	 *            the data to set
 	 */
 	public void setData(Date data) {
 		this.data = data;
@@ -114,17 +129,17 @@ public class Compra {
 
 	@Override
 	public String toString() {
-		return venedor+" - "+client+" - "+formateador.format(data);
+		return venedor + " - " + client + " - " + formateador.format(data);
 	}
 
 	public void display() {
 		System.out.println("\nDades de la compra " + id + "\nVenedor-->"
-				+ venedor + "\nClient-->" + client + "\nPreu-->"
-				+ preu+ "\nData-->"	+ formateador.format(data)+"\nArticles:");
-		for(int x=0;x<articles.length;x++){
-			System.out.println(articles[x].getId()+"."+articles[x].getJoc()+" - "+articles[x].getPreu());
+				+ venedor + "\nClient-->" + client + "\nPreu-->" + preu
+				+ "\nData-->" + formateador.format(data) + "\nArticles:");
+		for (int x = 0; x < articles.length; x++) {
+			System.out.println(articles[x].getId() + "." + articles[x].getJoc()
+					+ " - " + articles[x].getPreu());
 		}
 	}
-
 
 }

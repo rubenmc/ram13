@@ -127,7 +127,7 @@ public class Comanda {
 				+ emisor + "\nReceptor-->" + receptor + "\nData-->"
 				+ formateador.format(data) + "\nArticles:");
 		for (int x = 0; x < articles.length; x++) {
-			System.out.println(articles[x]+ " - " + articles[x].getPreu());
+			System.out.println(articles[x] + " - " + articles[x].getPreu());
 		}
 	}
 

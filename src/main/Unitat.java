@@ -6,9 +6,8 @@ public class Unitat {
 	private int tenda;
 	private int joc;
 
-	
-	//Constructor
-	/** 
+	// Constructor
+	/**
 	 * @param id
 	 * @param tenda
 	 * @param joc
@@ -19,8 +18,7 @@ public class Unitat {
 		this.joc = joc;
 	}
 
-	
-	//Getters i Setters
+	// Getters i Setters
 	/**
 	 * @return the id
 	 */
@@ -72,13 +70,12 @@ public class Unitat {
 	}
 
 	public void display() {
-		System.out.println("\nDades de la unitat " + id + " del joc "
-				+ joc + "\nTenda-->" + tenda + "\nPreu-->"
-				+ joc);
+		System.out.println("\nDades de la unitat " + id + " del joc " + joc
+				+ "\nTenda-->" + tenda + "\nPreu-->" + joc);
 	}
-	
+
 	public float getPreu() {
-		//Consulta a BD utilizando el ID del juego y devolviendo el precio
+		// Consulta a BD utilizando el ID del juego y devolviendo el precio
 		return 0;
 	}
 

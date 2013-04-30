@@ -6,14 +6,14 @@ public class Particular extends Persona {
 
 	private Date dataNaixement;
 
-	//Constructor
+	// Constructor
 	public Particular(int id, String nom, String telf, String NIF, String mail,
 			Date data) {
 		super(id, nom, telf, NIF, mail);
 		this.dataNaixement = data;
 	}
-	
-	//Getters i Setters
+
+	// Getters i Setters
 	/**
 	 * @return the dataNaixement
 	 */
@@ -34,6 +34,7 @@ public class Particular extends Persona {
 		return super.toString();
 	}
 
+	@Override
 	public void display() {
 		super.display();
 		System.out.println("Data de naixement-->" + dataNaixement);

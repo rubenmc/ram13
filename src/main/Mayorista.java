@@ -4,14 +4,14 @@ public class Mayorista extends Persona {
 
 	private String personaContacte;
 
-	//Constructor
+	// Constructor
 	public Mayorista(int id, String nom, String telf, String NIF, String mail,
 			String persona) {
 		super(id, nom, telf, NIF, mail);
 		this.personaContacte = persona;
 	}
 
-	//Getters i Setters
+	// Getters i Setters
 	/**
 	 * @return the personaContacte
 	 */
@@ -32,6 +32,7 @@ public class Mayorista extends Persona {
 		return super.toString();
 	}
 
+	@Override
 	public void display() {
 		super.display();
 		System.out.println("Persona de contacte-->" + personaContacte);
