@@ -19,7 +19,7 @@ public class JLogin extends JFrame implements ActionListener {
 	private JTextField 	jtfPass;
 
 	public JLogin() {
-		super();
+		super("Inici de Sessió");
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);

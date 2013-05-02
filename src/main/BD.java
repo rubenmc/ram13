@@ -12,7 +12,7 @@ public class BD {
 
 			// Crear conexio
 			Connection conexion = DriverManager.getConnection(
-					"jdbc:mysql://10.1.105.31/m13", "root", "serverm13");
+					"jdbc:mysql://10.1.105.213/m13", "root", "serverm13");
 			System.out.println("That's goood");
 
 			return conexion;

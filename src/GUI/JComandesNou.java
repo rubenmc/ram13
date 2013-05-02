@@ -1,16 +1,17 @@
 package GUI;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import javax.swing.WindowConstants;
 
 @SuppressWarnings("serial")
-public class JComandesNou extends JFrame implements ActionListener {
+public class JComandesNou extends JDialog implements ActionListener {
 	
 	private JLabel 		jlComandesNou;
 
@@ -30,8 +31,8 @@ public class JComandesNou extends JFrame implements ActionListener {
 
 	private JButton 	jbGuardar;
 
-	public JComandesNou() {
-		super();
+	public JComandesNou(Frame parent, boolean modal) {
+		super(parent,"Nova comanda",modal);
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
@@ -119,12 +120,6 @@ public class JComandesNou extends JFrame implements ActionListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public static void main(String[] args) {
-		JComandesNou inst = new JComandesNou();
-		inst.setLocationRelativeTo(null);
-		inst.setVisible(true);
 	}
 
 	@Override

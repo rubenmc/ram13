@@ -1,29 +1,17 @@
 package GUI;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import javax.swing.WindowConstants;
 
-
-/**
-* This code was edited or generated using CloudGarden's Jigloo
-* SWT/Swing GUI Builder, which is free for non-commercial
-* use. If Jigloo is being used commercially (ie, by a corporation,
-* company or business for any purpose whatever) then you
-* should purchase a license for each developer using Jigloo.
-* Please visit www.cloudgarden.com for details.
-* Use of Jigloo implies acceptance of these licensing terms.
-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
-* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
-* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
-*/
 @SuppressWarnings("serial")
-public class JTendesNou extends JFrame implements ActionListener {
+public class JTendesNou extends JDialog implements ActionListener {
 	
 	private JLabel 		jlTendesNou;
 
@@ -35,8 +23,8 @@ public class JTendesNou extends JFrame implements ActionListener {
 
 	private JButton 	jbGuardar;
 
-	public JTendesNou() {
-		super();
+	public JTendesNou(Frame parent, boolean modal) {
+		super(parent,"Nova tenda",modal);
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
@@ -80,12 +68,6 @@ public class JTendesNou extends JFrame implements ActionListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public static void main(String[] args) {
-		JTendesNou inst = new JTendesNou();
-		inst.setLocationRelativeTo(null);
-		inst.setVisible(true);
 	}
 
 	@Override

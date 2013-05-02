@@ -1,16 +1,17 @@
 package GUI;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import javax.swing.WindowConstants;
 
 @SuppressWarnings("serial")
-public class JTreballadorsNou extends JFrame implements ActionListener {
+public class JTreballadorsNou extends JDialog implements ActionListener {
 	
 	private JLabel 		jlTreballadorsNou;
 
@@ -18,18 +19,17 @@ public class JTreballadorsNou extends JFrame implements ActionListener {
 	private JTextField 	jtfNom;
 	private JTextField 	jtfTelefon;
 	private JTextField 	jtfSS;
-	private JTextField 	jtfVentes;
 
 	private JLabel 		jlDNI;
 	private JLabel 		jlNom;
 	private JLabel 		jlTelefon;
 	private JLabel 		jlSS;
-	private JLabel 		jlVentes;
+
 
 	private JButton 	jbGuardar;
 
-	public JTreballadorsNou() {
-		super();
+	public JTreballadorsNou(Frame parent, boolean modal) {
+		super(parent, "Nou Treballador", modal);
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
@@ -84,17 +84,6 @@ public class JTreballadorsNou extends JFrame implements ActionListener {
 				getContentPane().add(jtfSS);
 				jtfSS.setBounds(138, 180, 168, 23);
 				
-				//Etiqueta de ventes
-				jlVentes = new JLabel();
-				getContentPane().add(jlVentes);
-				jlVentes.setText("Ventes");
-				jlVentes.setBounds(39, 223, 37, 16);
-				
-				//Camp que guarda ventes
-				jtfVentes = new JTextField();
-				getContentPane().add(jtfVentes);
-				jtfVentes.setBounds(138, 220, 140, 23);
-				
 				//Botó guardar
 				jbGuardar = new JButton();
 				getContentPane().add(jbGuardar);
@@ -108,12 +97,6 @@ public class JTreballadorsNou extends JFrame implements ActionListener {
 		}
 	}
 	
-	public static void main(String[] args) {
-		JTreballadorsNou inst = new JTreballadorsNou();
-		inst.setLocationRelativeTo(null);
-		inst.setVisible(true);
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub

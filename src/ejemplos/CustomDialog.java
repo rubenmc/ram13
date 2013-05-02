@@ -1,17 +1,8 @@
-package GUI;
-import java.awt.Frame;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+package ejemplos;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
-import javax.swing.WindowConstants;
-
-@SuppressWarnings("serial")
-public class JJocsNou extends JDialog implements ActionListener {
+public class CustomDialog extends javax.swing.JDialog {
 	private JLabel jlJocsNoi;
 	private JTextField jtfPreu;
 	private JButton jbGuardar;
@@ -20,9 +11,9 @@ public class JJocsNou extends JDialog implements ActionListener {
 	private JLabel jlNom;
 	private JTextField jtfCompanyia;
 	private JTextField jtfNom;
-
-	public JJocsNou(Frame parent, boolean modal) {
-		super(parent,"Nou Joc",modal);
+	
+	public CustomDialog(java.awt.Frame parent, boolean modal) {
+		super(parent, modal);
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
@@ -74,16 +65,27 @@ public class JJocsNou extends JDialog implements ActionListener {
 		
 			pack();
 			setSize(400, 300);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 
+	/*public static void main(String args[]) {
+		java.awt.EventQueue.invokeLater(new Runnable() {
+
+			public void run() {
+				CustomDialog dialog = new CustomDialog(
+						new javax.swing.JFrame(), true);
+				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+					public void windowClosing(java.awt.event.WindowEvent e) {
+						System.exit(0);
+					}
+				});
+				dialog.setVisible(true);
+			}
+		});
+	}*/
+	// Variables declaration - do not modify
+	// End of variables declaration
 }
