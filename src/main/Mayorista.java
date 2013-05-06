@@ -5,7 +5,7 @@ public class Mayorista extends Persona {
 	private String personaContacte;
 
 	// Constructor
-	public Mayorista(int id, String nom, String telf, String NIF, String mail,
+	public Mayorista(String id, String nom, String telf, String NIF, String mail,
 			String persona) {
 		super(id, nom, telf, NIF, mail);
 		this.personaContacte = persona;

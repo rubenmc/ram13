@@ -6,7 +6,7 @@ public class Proveidor extends Persona {
 	private String compteCorrent;
 
 	// Constructor
-	public Proveidor(int id, String nom, String telf, String NIF, String mail,
+	public Proveidor(String id, String nom, String telf, String NIF, String mail,
 			String persona, String compte) {
 		super(id, nom, telf, NIF, mail);
 		this.personaContacte = persona;

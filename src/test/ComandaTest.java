@@ -15,7 +15,7 @@ public class ComandaTest {
 
 		Joc[] articles = new Joc[5];
 		for (int x = 0; x < articles.length; x++) {
-			articles[x] = new Joc(0, "Joc" + x, 15, 70, "Xupi");
+			articles[x] = new Joc(0, "Joc" + x, "Proveidor 1", 70, "Xupi");
 		}
 		Comanda comanda = new Comanda(0, 1, 2, false, new java.sql.Date(
 				now.getTime()), articles);

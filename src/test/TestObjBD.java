@@ -1,6 +1,5 @@
 package test;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,12 +12,13 @@ public class TestObjBD {
 	public static void main(String[] args) throws SQLException {
 		ResultSet resul = null;
 		Statement sentencia = null;
-		Connection conexio = null;
+		boolean conexio;
+		BD bd = new BD();
 		try {
-			conexio = BD.connecta();
-			if (conexio != null) {
+			conexio = bd.connecta();
+			if (conexio) {
 				// Crear consulta
-				sentencia = conexio.createStatement();
+				sentencia = bd.getConnection().createStatement();
 
 				// consulta
 				resul = sentencia
@@ -42,7 +42,7 @@ public class TestObjBD {
 		// Tanquem
 		// resul.close();
 		// sentencia.close();
-		conexio.close();
+		//conexio.close();
 
 	}
 

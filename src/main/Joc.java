@@ -2,7 +2,7 @@ package main;
 
 public class Joc {
 
-	private int proveidor;
+	private String proveidor;
 	private String nom;
 	private String genere;
 	private float preu;
@@ -15,7 +15,7 @@ public class Joc {
 	 * @param proveidor
 	 * @param preu
 	 */
-	public Joc(int id, String nom, int proveidor, float preu, String genere) {
+	public Joc(int id, String nom, String proveidor, float preu, String genere) {
 		this.id = id;
 		this.nom = nom;
 		this.proveidor = proveidor;
@@ -27,7 +27,7 @@ public class Joc {
 	/**
 	 * @return the proveidor
 	 */
-	public int getProveidor() {
+	public String getProveidor() {
 		return proveidor;
 	}
 
@@ -35,7 +35,7 @@ public class Joc {
 	 * @param proveidor
 	 *            the proveidor to set
 	 */
-	public void setProveidor(int proveidor) {
+	public void setProveidor(String proveidor) {
 		this.proveidor = proveidor;
 	}
 

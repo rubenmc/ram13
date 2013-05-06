@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+import main.BD;
+
 @SuppressWarnings("serial")
 public class JLogin extends JFrame implements ActionListener {
 	private JTextField 	jtfLogin;
@@ -17,6 +19,7 @@ public class JLogin extends JFrame implements ActionListener {
 	private JLabel 		jlPass;
 	private JLabel 		jlLogin;
 	private JTextField 	jtfPass;
+	private BD 			bd;
 
 	public JLogin() {
 		super("Inici de Sessió");
@@ -57,6 +60,7 @@ public class JLogin extends JFrame implements ActionListener {
 				getContentPane().add(jbEntrar);
 				jbEntrar.setText("Accedir al programa");
 				jbEntrar.setBounds(18, 96, 265, 23);
+				jbEntrar.addActionListener(this);
 			
 			pack();
 			this.setSize(332, 176);
@@ -75,6 +79,24 @@ public class JLogin extends JFrame implements ActionListener {
 	@Override
 	//ActionPerformed del botó accedir a la base de dades
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+		try {
+			bd = new BD();
+			int res = bd.login(jtfLogin.getText(), jtfPass.getText());
+			if(res!=1){
+				this.setVisible(false);
+				ErrorDialog error = new ErrorDialog(this,true,res);
+				error.setLocationRelativeTo(null);
+				error.setVisible(true);
+			} else {
+				this.setVisible(false);
+				JMenu menu = new JMenu();
+				menu.setLocationRelativeTo(null);
+				menu.setVisible(true);
+			}
+	
+		} catch (InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
+			
+		}
 	}
 }

@@ -2,6 +2,8 @@ package GUI;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -9,6 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import javax.swing.WindowConstants;
+
+import main.BD;
+import main.Particular;
 
 @SuppressWarnings("serial")
 public class JClientsNou extends JDialog implements ActionListener {
@@ -75,6 +80,7 @@ public class JClientsNou extends JDialog implements ActionListener {
 				getContentPane().add(jbGuardar);
 				jbGuardar.setText("Guardar Entrada");
 				jbGuardar.setBounds(64, 277, 270, 23);
+				jbGuardar.addActionListener(this);
 
 			pack();
 			this.setSize(402, 370);
@@ -85,8 +91,23 @@ public class JClientsNou extends JDialog implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		Date now = new Date("03/05/2013");
+		BD bd = new BD();
+		Particular particular = new Particular("Par1", jtfNom.getText(), jtfTelefon.getText(), jtfDNI.getText(), "TestMail1", new java.sql.Date(now.getTime()));
+		try {
+			bd.connecta();
+			bd.afegeixParticular(particular);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -95,12 +95,6 @@ public class JMenu extends JFrame implements ActionListener {
 		}
 	}
 	
-	//Main de la part del menú (tiene los dias contados ^^)
-	public static void main(String[] args) {
-		JMenu inst = new JMenu();
-		inst.setLocationRelativeTo(null);
-		inst.setVisible(true);
-	}
 	
 	//Part del actionPerformed on hem de cridar a les finestres de cada apartat
 	@Override
@@ -110,7 +104,6 @@ public class JMenu extends JFrame implements ActionListener {
 			JJocs inst = new JJocs();
 			inst.setLocationRelativeTo(null);
 			inst.setVisible(true);
-			inst.setFocusable(false);
 		} else if (e.getActionCommand().equals("btnTendes")) {
 			this.setVisible(false);
 			JTendes inst = new JTendes();

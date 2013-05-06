@@ -7,7 +7,7 @@ import java.util.Locale;
 public class Compra {
 
 	private int id;
-	private int client;
+	private String client;
 	private int venedor;
 	private Unitat[] articles;
 	private float preu;
@@ -16,7 +16,7 @@ public class Compra {
 			"d 'de' MMMM 'de' yyyy - HH:mm", new Locale("es"));
 
 	// Constructor
-	public Compra(int id, int client, int venedor, Unitat[] article,
+	public Compra(int id, String client, int venedor, Unitat[] article,
 			Date data) {
 		this.id = id;
 		this.client = client;
@@ -55,7 +55,7 @@ public class Compra {
 	/**
 	 * @return the client
 	 */
-	public int getClient() {
+	public String getClient() {
 		return client;
 	}
 
@@ -63,7 +63,7 @@ public class Compra {
 	 * @param client
 	 *            the client to set
 	 */
-	public void setClient(int client) {
+	public void setClient(String client) {
 		this.client = client;
 	}
 
