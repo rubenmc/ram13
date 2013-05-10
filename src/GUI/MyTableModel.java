@@ -6,14 +6,16 @@ import javax.swing.table.AbstractTableModel;
 
 @SuppressWarnings("serial")
 public class MyTableModel extends AbstractTableModel {
-	// Array amb els titols de les columnes
+		// Array amb els titols de les columnes
 		private String[] columnName;
 		// Vector per recogir dades
 		private Vector data = new Vector();
 
+		//Constructor
 		public MyTableModel(String[] columnes){
 			columnName = columnes;
 		}
+		
 		// Metodes
 		// Numero de columnes
 		@Override

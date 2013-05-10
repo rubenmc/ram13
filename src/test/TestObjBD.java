@@ -12,11 +12,11 @@ public class TestObjBD {
 	public static void main(String[] args) throws SQLException {
 		ResultSet resul = null;
 		Statement sentencia = null;
-		boolean conexio;
+		int conexio;
 		BD bd = new BD();
 		try {
-			conexio = bd.connecta();
-			if (conexio) {
+			conexio = bd.connecta("root","serverm13");
+			if (conexio==1) {
 				// Crear consulta
 				sentencia = bd.getConnection().createStatement();
 
@@ -40,9 +40,9 @@ public class TestObjBD {
 		}
 
 		// Tanquem
-		// resul.close();
-		// sentencia.close();
-		//conexio.close();
+		resul.close();
+		sentencia.close();
+		BD.close();
 
 	}
 

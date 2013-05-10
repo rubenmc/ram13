@@ -15,7 +15,7 @@ public class LoginTest {
 		System.out.print("pass:");
 		String pass = scan.nextLine();
 		try {
-			int res = bd.login(usuari,pass);
+			int res = bd.connecta(usuari,pass);
 			System.out.println(res);
 		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block

@@ -13,17 +13,17 @@ public class TestAutoID {
 		Date now = new Date();
 
 		try {
-			bd.connecta();
+			bd.connecta("usuari","serverm13");
 			// System.out.println(bd.getParticularNextID());
-			Particular particular = new Particular(bd.getParticularNextID(),
+			Particular particular = new Particular(BD.getParticularNextID(),
 					"ParticularAutoID", "977159753", "399876543S",
 					"auto@id.com", new java.sql.Date(now.getTime()));
 			
-			bd.afegeixParticular(particular);
+			BD.afegeixParticular(particular);
 			
 			System.out.println("YIJA");
 			
-			bd.close();
+			BD.close();
 		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

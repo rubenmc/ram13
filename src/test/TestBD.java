@@ -1,43 +1,30 @@
 package test;
 
-import java.sql.*;
 
-public class TestBD {
+import main.BD;
+
+public class TestBD extends Thread{
 
 	public static void main(String[] args) {
+		BD bd = new BD();
+		int res;
 		try {
-			// Carregar JDBC
-			Class.forName("com.mysql.jdbc.Driver");
-
-			// Crear conexio
-			Connection conexion = DriverManager.getConnection(
-					"jdbc:mysql://192.168.1.35/m13", "root", "serverm13");
-
-			// Crear consulta
-			Statement sentencia = conexion.createStatement();
-
-			// consulta
-			ResultSet resul = sentencia.executeQuery("SELECT * FROM prova");
-
-			// Obtenir i imprimir les dades
-			System.out
-					.println("--------------------\nPROBA DE CONNEXIO\n--------------------");
-			while (resul.next()) {
-				System.out.println(resul.getInt(1));
-				System.out.println(resul.getString(2));
-				System.out.println(resul.getString(3));
+			res = bd.connecta("usuari", "serverm13");
+			System.out.println(res);
+			while (true){
+				try {
+					sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-
-			// Tanquem
-			resul.close();
-			sentencia.close();
-			conexion.close();
-
-		} catch (ClassNotFoundException e) {
-			System.out.println("ClassNotFoundException");
-		} catch (SQLException e) {
+		} catch (InstantiationException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 
 	}
 
