@@ -30,7 +30,7 @@ public class UIJocs extends JFrame implements ActionListener {
 			lblTitol.setText("GESTIÓ DE JOCS");
 			lblTitol.setBounds(12, 12, 279, 16);
 			// Taula per mostrar els jocs de la BD
-			jocs = BD.getDades("provaparticular");
+			jocs = BD.getDades("provaparticular",1,1);
 			getContentPane().add(jocs);
 			jocs.setBounds(12, 40, 575, 158);
 			// Boto per afegir un nou joc

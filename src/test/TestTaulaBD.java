@@ -13,7 +13,7 @@ public class TestTaulaBD {
 		try {
 			int res = bd.connecta("usuari", "serverm13");
 			if(res==1){
-				Taula taula = BD.getDades("provaparticular");
+				Taula taula = BD.getDades("provaparticular",1,1);
 			} else {
 				System.out.println("FALLA CONEXION");
 			}

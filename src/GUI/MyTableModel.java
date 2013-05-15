@@ -62,5 +62,13 @@ public class MyTableModel extends AbstractTableModel {
 			}
 			fireTableDataChanged();
 		}
-    
+		
+		@Override
+		public boolean isCellEditable(int x, int y){
+			if(y==columnName.length-1){
+				return true;
+			} else{
+				return false;
+			}
+		}
 }

@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -25,9 +26,13 @@ public class Login extends JFrame implements ActionListener {
 	public Login() {
 		super("Inici de Sessió");
 		try {
+			JLabel bg = new JLabel();
+			setContentPane(bg);
+			setBackground(new Color(140, 210, 228));
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
-
+			
+			
 			// TextField que guarda el nom de l'usuari
 			txtUser = new JTextField();
 			getContentPane().add(txtUser);
@@ -83,12 +88,20 @@ public class Login extends JFrame implements ActionListener {
 		try {
 			bd = new BD();
 			//Intentem accedir a l'aplicatiu
-			int res = bd.connecta(txtUser.getText(),
-					new String(txtPass.getPassword()));
+			int res = bd.connecta(txtUser.getText(),txtPass.getText());
 			//Si el metode per connectar-nos retorna un numero diferent a 1 significa que hi ha hagut un error
 			if (res != 1) {
 				// Creem un dialog indicant l'error
-				ErrorDialog error = new ErrorDialog(this, true, res);
+				String missatge=null;
+				switch (res) {
+				case 0:
+					missatge = new String("Usuari o contrasenya incorrecta");
+					break;
+				case 2:
+					missatge = new String("Ja estas conectat");
+					break;
+				}
+				ErrorDialog error = new ErrorDialog(this, true, missatge);
 				error.setLocationRelativeTo(null);
 				error.setVisible(true);
 			} else {

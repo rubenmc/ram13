@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,10 +14,14 @@ public class ErrorDialog extends JDialog implements ActionListener {
 	private JButton btnOK;
 	private JLabel lblError;
 
-	public ErrorDialog(JFrame frame, boolean modal, int error) {
+	public ErrorDialog(JFrame frame, boolean modal,String error) {
 		super(frame, "Error de login", modal);
 		try {
+			JLabel bg = new JLabel();
+			setContentPane(bg);
+			setBackground(new Color(140, 210, 228));
 			getContentPane().setLayout(null);
+			
 			// Boto per tancar el Dialog
 			btnOK = new JButton();
 			getContentPane().add(btnOK);
@@ -29,15 +34,8 @@ public class ErrorDialog extends JDialog implements ActionListener {
 			lblError.setBounds(38, 21, 300, 43);
 			lblError.setHorizontalAlignment(SwingConstants.CENTER);
 			lblError.setHorizontalTextPosition(SwingConstants.CENTER);
-
-			switch (error) {
-			case 0:
-				lblError.setText("Usuari o contrasenya incorrecta");
-				break;
-			case 2:
-				lblError.setText("Ja estas conectat");
-				break;
-			}
+			lblError.setText(error);
+			
 			this.setSize(401, 163);
 		} catch (Exception e) {
 			e.printStackTrace();

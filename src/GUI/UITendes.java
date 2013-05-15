@@ -30,7 +30,7 @@ public class UITendes extends JFrame implements ActionListener {
 			lblTitol.setText("GESTIÓ DE TENDES");
 			lblTitol.setBounds(12, 12, 279, 16);
 			// Taula per veure les tendes de la BD
-			tendes = BD.getDades("provaparticular");
+			tendes = BD.getDades("provaparticular",1,1);
 			getContentPane().add(tendes);
 			tendes.setBounds(12, 40, 575, 158);
 			// Boto per afegir una nova tenda

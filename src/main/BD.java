@@ -7,6 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 
 import GUI.Taula;
 
@@ -20,11 +21,10 @@ public class BD {
 	 * Metode per conectar-se a la base de dades
 	 * 
 	 * @param user
-	 * 			Usuari de la BD
+	 *            Usuari de la BD
 	 * @param pass
-	 * 			Contrasenya sense encriptar
-	 * @return
-	 * 			Codi indicant una connexio correcta o error
+	 *            Contrasenya sense encriptar
+	 * @return Codi indicant una connexio correcta o error
 	 * 
 	 * @throws InstantiationException
 	 * @throws IllegalAccessException
@@ -43,14 +43,13 @@ public class BD {
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("ClassNotFoundException");
-		} catch (MySQLSyntaxErrorException e){
+		} catch (MySQLSyntaxErrorException e) {
 			return 2;
 		} catch (SQLException e) {
 			return 0;
-		} 
+		}
 		return 0;
 	}
-
 
 	/**
 	 * @return La conexio actual
@@ -106,7 +105,73 @@ public class BD {
 			e.printStackTrace();
 		}
 		return false;
-		
+
+	}
+
+	/**
+	 * Metode per modificar un particular
+	 * 
+	 * @param particular
+	 *            particular que hem de modificar
+	 * @return True si tot es correcte, false si hi ha algun error
+	 */
+	public static boolean modificaParticular(Particular particular) {
+		String id = BD.getParticularID(particular.getNIF());
+		String sql_insert = "UPDATE provaparticular SET " + "nom='"
+				+ particular.getNom() + "'," + "nif='" + particular.getNIF()
+				+ "', " + "telf='" + particular.getTelf() + "',"
+				+ "datanaixement='" + particular.getDataNaixement() + "',"
+				+ "mail='" + particular.getMail() + "'" + "WHERE id='" + id
+				+ "'";
+
+		Statement sentencia;
+		try {
+			sentencia = CONEXIO.createStatement();
+			sentencia.executeUpdate(sql_insert);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public static boolean eliminarParticular(String nif) {
+		String id = BD.getParticularID(nif);
+		String sql_delete = "DELETE FROM provaparticular WHERE id='" + id
+				+ "';";
+		Statement sentencia;
+		try {
+			sentencia = CONEXIO.createStatement();
+			sentencia.executeUpdate(sql_delete);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	/**
+	 * Metode per obtenir l'ID d'un particular a partir del seu DNI
+	 * 
+	 * @param nif
+	 * @return
+	 */
+	private static String getParticularID(String nif) {
+		String sql_query = "SELECT id FROM provaparticular where nif='" + nif
+				+ "';";
+		Statement sentencia;
+		try {
+			sentencia = CONEXIO.createStatement();
+			ResultSet resul = sentencia.executeQuery(sql_query);
+			if (resul.next()) {
+				return resul.getString(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 	/**
@@ -122,35 +187,6 @@ public class BD {
 			e.printStackTrace();
 			return false;
 		}
-	}
-
-	/**
-	 * Metode per a crear un nou usuari per utilitzar l'aplicatiu
-	 * 
-	 * @param name
-	 *            Nom de l'usuari
-	 * @param pass
-	 *            Contrasenya de l'usuari
-	 * @return
-	 */
-	public static boolean nouUsuari(String name, String pass) {
-		// Codifiquem la contrasenya
-		String passCodificada = codifica(pass);
-		// Creem l'string sql
-		String sql_insert = "INSERT INTO login (`id` ,`usuari` ,`contrasenya` ,`conectat`) VALUES ('"
-				+ 0 + "','" + name + "','" + passCodificada + "','" + 0 + "');";
-		Statement sentencia;
-		try {
-			// Executem
-			sentencia = CONEXIO.createStatement();
-			sentencia.executeUpdate(sql_insert);
-			// Retornem true si s'ha inserit correctament
-			return true;
-		} catch (SQLException e) {
-		}
-		// Retornem false si hi ha hagut algun error
-		return false;
-
 	}
 
 	/**
@@ -184,50 +220,56 @@ public class BD {
 		return null;
 	}
 
-
-	public static Taula getDades(String taula) {
-		String sql_query = "SELECT * FROM "+taula+";";
-		String sql_count = "SELECT count(*) from "+taula+";";
+	/**
+	 * Metode per obtenir dades de la BD i mostrar-les en format correcte
+	 * 
+	 * @param taula
+	 * @return
+	 */
+	public static Taula getDades(String taula, int width, int height) {
+		String sql_query = "SELECT nom,telf,nif,datanaixement,mail FROM "
+				+ taula + ";";
+		String sql_count = "SELECT count(*) from " + taula + ";";
 		ArrayList<String> camps = new ArrayList<String>();
 		Object[][] dades;
 		Statement sentencia;
 		ResultSet resul;
 		ResultSet noms;
-		
+
 		try {
-			//Noms columnes
+			// Noms columnes
 			DatabaseMetaData dbmd = BD.CONEXIO.getMetaData();
 			noms = dbmd.getColumns(null, null, taula, null);
-			while(noms.next()){
-				camps.add(noms.getString("COLUMN_NAME"));
+			noms.next();
+			while (noms.next()) {
+				camps.add(noms.getString("COLUMN_NAME").toUpperCase());
 			}
-			
-					
-			//Dades
+			camps.add("SELECCIONAR");
+
+			// Dades
 			sentencia = CONEXIO.createStatement();
 			resul = sentencia.executeQuery(sql_count);
 			resul.next();
-			dades = new Object[resul.getInt(1)][camps.size()+2];
+			dades = new Object[resul.getInt(1)][camps.size()];
 			resul = sentencia.executeQuery(sql_query);
-			int x=0;
-			while(resul.next()){
-				dades[x][0]=resul.getString(1);
-				dades[x][1]=resul.getString(2);
-				dades[x][2]=resul.getString(3);
-				dades[x][3]=resul.getString(4);
-				dades[x][4]=resul.getString(5);
-				dades[x][5]=resul.getString(6);
-				dades[x][6]= new JButton("BTN1");
-				dades[x][7]= new JButton("BTN2");
+			int x = 0;
+			while (resul.next()) {
+				dades[x][0] = resul.getString(1);
+				dades[x][1] = resul.getString(2);
+				dades[x][2] = resul.getString(3);
+				dades[x][3] = resul.getString(4);
+				dades[x][4] = resul.getString(5);
+				dades[x][5] = false;
 				x++;
 			}
-			
-			Taula table = new Taula(dades, camps.toArray(new String[camps.size()]));
+
+			Taula table = new Taula(dades, camps.toArray(new String[camps
+					.size()]), width, height);
+
 			return table;
 		} catch (SQLException e) {
 		}
 		return null;
 	}
-	
-	
+
 }

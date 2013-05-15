@@ -30,7 +30,7 @@ public class UIComandes extends JFrame implements ActionListener {
 			lblTitol.setText("GESTIÓ DE COMANDES");
 			lblTitol.setBounds(12, 12, 279, 16);
 			// Taula per mostrar les comandes de la BD
-			comandes = BD.getDades("provaparticular");
+			comandes = BD.getDades("provaparticular",1,1);
 			getContentPane().add(comandes);
 			comandes.setBounds(12, 40, 575, 158);
 			// Boto per afegir una comanda nova

@@ -30,7 +30,7 @@ public class UITreballadors extends JFrame implements ActionListener {
 			lblTitol.setText("GESTIÓ DE TREBALLADORS");
 			lblTitol.setBounds(12, 12, 279, 16);
 			// Taula per veure els treballadors de la BD
-			treballadors = BD.getDades("provaparticular");
+			treballadors = BD.getDades("provaparticular",1,1);
 			getContentPane().add(treballadors);
 			treballadors.setBounds(12, 40, 575, 158);
 			// Boto per afegir un nou treballador

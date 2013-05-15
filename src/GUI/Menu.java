@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,12 +23,18 @@ public class Menu extends JFrame implements ActionListener {
 	private JButton btnTendes;
 	private JButton btnJocs;
 
+
 	public Menu() {
 		super("Menú Principal");
 		try {
+
+			JLabel bg = new JLabel();
+			setContentPane(bg);
+			setBackground(new Color(140, 210, 228));
+			
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
-
+			
 			// Etiqueta del títol de la finestra
 			lblMenu = new JLabel();
 			getContentPane().add(lblMenu);
@@ -97,7 +104,6 @@ public class Menu extends JFrame implements ActionListener {
 			btnSortir.setBounds(43, 252, 292, 35);
 			btnSortir.addActionListener(this);
 			btnSortir.setActionCommand("btnSortir");
-
 			pack();
 			this.setSize(391, 364);
 		} catch (Exception e) {
@@ -149,5 +155,5 @@ public class Menu extends JFrame implements ActionListener {
 			System.exit(0);
 		}
 	}
-
+	
 }
