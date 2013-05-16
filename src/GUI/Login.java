@@ -15,13 +15,13 @@ import main.BD;
 
 @SuppressWarnings("serial")
 public class Login extends JFrame implements ActionListener {
-	private JPasswordField 	txtPass;
-	private JTextField 		txtUser;
-	private JButton 		btnEntrar;
-	private JLabel 			lblTitol;
-	private JLabel 			lblPass;
-	private JLabel 			lblUser;
-	private BD 				bd;
+	private JPasswordField txtPass;
+	private JTextField txtUser;
+	private JButton btnEntrar;
+	private JLabel lblTitol;
+	private JLabel lblPass;
+	private JLabel lblUser;
+	private BD bd;
 
 	public Login() {
 		super("Inici de Sessió");
@@ -31,8 +31,7 @@ public class Login extends JFrame implements ActionListener {
 			setBackground(new Color(140, 210, 228));
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
-			
-			
+
 			// TextField que guarda el nom de l'usuari
 			txtUser = new JTextField();
 			getContentPane().add(txtUser);
@@ -87,12 +86,13 @@ public class Login extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		try {
 			bd = new BD();
-			//Intentem accedir a l'aplicatiu
-			int res = bd.connecta(txtUser.getText(),txtPass.getText());
-			//Si el metode per connectar-nos retorna un numero diferent a 1 significa que hi ha hagut un error
+			// Intentem accedir a l'aplicatiu
+			int res = bd.connecta(txtUser.getText(), txtPass.getText());
+			// Si el metode per connectar-nos retorna un numero diferent a 1
+			// significa que hi ha hagut un error
 			if (res != 1) {
 				// Creem un dialog indicant l'error
-				String missatge=null;
+				String missatge = null;
 				switch (res) {
 				case 0:
 					missatge = new String("Usuari o contrasenya incorrecta");
@@ -105,7 +105,7 @@ public class Login extends JFrame implements ActionListener {
 				error.setLocationRelativeTo(null);
 				error.setVisible(true);
 			} else {
-				//Si el metode no dona error ocultem el login i obrim el menu
+				// Si el metode no dona error ocultem el login i obrim el menu
 				this.dispose();
 				Menu menu = new Menu();
 				menu.setLocationRelativeTo(null);

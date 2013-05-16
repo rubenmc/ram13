@@ -6,69 +6,69 @@ import javax.swing.table.AbstractTableModel;
 
 @SuppressWarnings("serial")
 public class MyTableModel extends AbstractTableModel {
-		// Array amb els titols de les columnes
-		private String[] columnName;
-		// Vector per recogir dades
-		private Vector data = new Vector();
+	// Array amb els titols de les columnes
+	private String[] columnName;
+	// Vector per recogir dades
+	private Vector data = new Vector();
 
-		//Constructor
-		public MyTableModel(String[] columnes){
-			columnName = columnes;
-		}
-		
-		// Metodes
-		// Numero de columnes
-		@Override
-		public int getColumnCount() {
-			return columnName.length;
-		}
+	// Constructor
+	public MyTableModel(String[] columnes) {
+		columnName = columnes;
+	}
 
-		// Numero de dades a la fila
-		@Override
-		public int getRowCount() {
-			return data.size();
-		}
+	// Metodes
+	// Numero de columnes
+	@Override
+	public int getColumnCount() {
+		return columnName.length;
+	}
 
-		// Obtenir un valor
-		@Override
-		public Object getValueAt(int row, int col) {
-			return ((Vector) data.get(row)).get(col);
-		}
+	// Numero de dades a la fila
+	@Override
+	public int getRowCount() {
+		return data.size();
+	}
 
-		// Obtenir nom de la columna
-		@Override
-		public String getColumnName(int col) {
-			return columnName[col];
-		}
+	// Obtenir un valor
+	@Override
+	public Object getValueAt(int row, int col) {
+		return ((Vector) data.get(row)).get(col);
+	}
 
-		// Obtenir clase de la columna
-		@Override
-		public Class getColumnClass(int c) {
-			return getValueAt(0, c).getClass();
-		}
+	// Obtenir nom de la columna
+	@Override
+	public String getColumnName(int col) {
+		return columnName[col];
+	}
 
-		// Posar un valor a una posició
-		@Override
-		public void setValueAt(Object value, int row, int col) {
-			((Vector) data.get(row)).setElementAt(value, col);
-			fireTableCellUpdated(row, col);
-		}
+	// Obtenir clase de la columna
+	@Override
+	public Class getColumnClass(int c) {
+		return getValueAt(0, c).getClass();
+	}
 
-		// Afegir una fila nova
-		public void insertData(Object[] values) {
-			data.add(new Vector());
-			for (int i = 0; i < values.length; i++) {
-				((Vector) data.get(data.size() - 1)).add(values[i]);
-			}
-			fireTableDataChanged();
+	// Posar un valor a una posició
+	@Override
+	public void setValueAt(Object value, int row, int col) {
+		((Vector) data.get(row)).setElementAt(value, col);
+		fireTableCellUpdated(row, col);
+	}
+
+	// Afegir una fila nova
+	public void insertData(Object[] values) {
+		data.add(new Vector());
+		for (int i = 0; i < values.length; i++) {
+			((Vector) data.get(data.size() - 1)).add(values[i]);
 		}
-		
-		@Override
-		public boolean isCellEditable(int x, int y){
-			if(y==columnName.length-1){
-				return true;
-			} else{
-				return false;
-			}
+		fireTableDataChanged();
+	}
+
+	@Override
+	public boolean isCellEditable(int x, int y) {
+		if (y == columnName.length - 1) {
+			return true;
+		} else {
+			return false;
 		}
+	}
 }

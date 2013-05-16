@@ -14,14 +14,14 @@ public class ErrorDialog extends JDialog implements ActionListener {
 	private JButton btnOK;
 	private JLabel lblError;
 
-	public ErrorDialog(JFrame frame, boolean modal,String error) {
+	public ErrorDialog(JFrame frame, boolean modal, String error) {
 		super(frame, "Error de login", modal);
 		try {
 			JLabel bg = new JLabel();
 			setContentPane(bg);
 			setBackground(new Color(140, 210, 228));
 			getContentPane().setLayout(null);
-			
+
 			// Boto per tancar el Dialog
 			btnOK = new JButton();
 			getContentPane().add(btnOK);
@@ -35,7 +35,7 @@ public class ErrorDialog extends JDialog implements ActionListener {
 			lblError.setHorizontalAlignment(SwingConstants.CENTER);
 			lblError.setHorizontalTextPosition(SwingConstants.CENTER);
 			lblError.setText(error);
-			
+
 			this.setSize(401, 163);
 		} catch (Exception e) {
 			e.printStackTrace();

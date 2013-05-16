@@ -12,12 +12,12 @@ import javax.swing.WindowConstants;
 
 @SuppressWarnings("serial")
 public class UITendesNou extends JDialog implements ActionListener {
-	private JTextField 	txtDireccio;
-	private JTextField 	txtTelefon;
-	private JButton 	lblGuardar;
-	private JLabel 		lblTitol;
-	private JLabel 		lblDireccio;
-	private JLabel 		lblTelefon;
+	private JTextField txtDireccio;
+	private JTextField txtTelefon;
+	private JButton lblGuardar;
+	private JLabel lblTitol;
+	private JLabel lblDireccio;
+	private JLabel lblTelefon;
 
 	public UITendesNou(Frame parent, boolean modal) {
 		super(parent, "Nova tenda", modal);

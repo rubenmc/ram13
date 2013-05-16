@@ -10,14 +10,14 @@ import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
 
 public class Taula extends JPanel {
-	private MyTableModel 	tableModel;
-	private String[] 		camps;
+	private MyTableModel tableModel;
+	private String[] camps;
 	private JTable table;
 
 	public Taula(Object[][] values, String[] camps, int width, int height) {
 		// Cridem al constructor del pare
 		super();
-		
+
 		this.camps = camps;
 		// Creem el model de la taula
 		tableModel = new MyTableModel(this.camps);
@@ -31,23 +31,23 @@ public class Taula extends JPanel {
 		for (int x = 0; x < values.length; x++) {
 			tableModel.insertData(values[x]);
 		}
-		
+
 		JTableHeader header = table.getTableHeader();
 		header.setBackground(new Color(0, 204, 255));
 		header.setFont(new Font("Dialog", Font.BOLD, 14));
 		// Creem un JScrollPane i li afegim la taula.
 		JScrollPane scrollPane = new JScrollPane(table);
-		
+
 		// Afegim el JScrollPane a la UI
 		add(scrollPane);
-		
+
 	}
-	
-	public MyTableModel getTableModel(){
+
+	public MyTableModel getTableModel() {
 		return tableModel;
 	}
-	
-	public int getTableHeight(){
-		return table.getRowCount()*table.getRowHeight()+30;
+
+	public int getTableHeight() {
+		return table.getRowCount() * table.getRowHeight() + 30;
 	}
 }

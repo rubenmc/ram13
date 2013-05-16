@@ -65,12 +65,21 @@ public class BD {
 	 * @throws SQLException
 	 */
 	public static String getParticularNextID() throws SQLException {
-		String sql = "Select particularNextID()";
+		String sql = "Select particular from clients";
+		try {
+			Statement sentencia = CONEXIO.createStatement();
+			ResultSet resul = sentencia.executeQuery(sql);
+			resul.next();
+			int num = resul.getInt(1);
+			num++;
+			sentencia.executeUpdate("UPDATE clients set particular='" + num
+					+ "';");
+			return "par" + num;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 
-		Statement sentencia = CONEXIO.createStatement();
-		ResultSet resul = sentencia.executeQuery(sql);
-		resul.next();
-		return resul.getString(1);
 	}
 
 	/**
@@ -135,9 +144,15 @@ public class BD {
 		return false;
 	}
 
+	/**
+	 * Metode per eliminar un particular
+	 * 
+	 * @param nif
+	 *            nif del particular a eliminar
+	 * @return
+	 */
 	public static boolean eliminarParticular(String nif) {
-		String id = BD.getParticularID(nif);
-		String sql_delete = "DELETE FROM provaparticular WHERE id='" + id
+		String sql_delete = "DELETE FROM provaparticular WHERE nif='" + nif
 				+ "';";
 		Statement sentencia;
 		try {
@@ -226,10 +241,9 @@ public class BD {
 	 * @param taula
 	 * @return
 	 */
-	public static Taula getDades(String taula, int width, int height) {
-		String sql_query = "SELECT nom,telf,nif,datanaixement,mail FROM "
-				+ taula + ";";
-		String sql_count = "SELECT count(*) from " + taula + ";";
+	public static Taula getDadesParticular(int width, int height) {
+		String sql_query = "SELECT nom,telf,nif,datanaixement,mail FROM provaparticular;";
+		String sql_count = "SELECT count(*) from provaparticular;";
 		ArrayList<String> camps = new ArrayList<String>();
 		Object[][] dades;
 		Statement sentencia;
@@ -239,7 +253,7 @@ public class BD {
 		try {
 			// Noms columnes
 			DatabaseMetaData dbmd = BD.CONEXIO.getMetaData();
-			noms = dbmd.getColumns(null, null, taula, null);
+			noms = dbmd.getColumns(null, null, "provaparticular", null);
 			noms.next();
 			while (noms.next()) {
 				camps.add(noms.getString("COLUMN_NAME").toUpperCase());

@@ -15,8 +15,8 @@ public class TestObjBD {
 		int conexio;
 		BD bd = new BD();
 		try {
-			conexio = bd.connecta("root","serverm13");
-			if (conexio==1) {
+			conexio = bd.connecta("root", "serverm13");
+			if (conexio == 1) {
 				// Crear consulta
 				sentencia = bd.getConnection().createStatement();
 

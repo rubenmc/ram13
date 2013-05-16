@@ -1,9 +1,8 @@
 package test;
 
-
 import main.BD;
 
-public class TestBD extends Thread{
+public class TestBD extends Thread {
 
 	public static void main(String[] args) {
 		BD bd = new BD();
@@ -11,7 +10,7 @@ public class TestBD extends Thread{
 		try {
 			res = bd.connecta("usuari", "serverm13");
 			System.out.println(res);
-			while (true){
+			while (true) {
 				try {
 					sleep(1000);
 				} catch (InterruptedException e) {
@@ -23,8 +22,6 @@ public class TestBD extends Thread{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 
 	}
 

@@ -13,7 +13,7 @@ import main.BD;
 
 @SuppressWarnings("serial")
 public class Menu extends JFrame implements ActionListener {
-	private JLabel 	lblMenu;
+	private JLabel lblMenu;
 	private JButton btnComandes;
 	private JButton btnSortir;
 	private JButton btnConsultes;
@@ -23,7 +23,6 @@ public class Menu extends JFrame implements ActionListener {
 	private JButton btnTendes;
 	private JButton btnJocs;
 
-
 	public Menu() {
 		super("Menú Principal");
 		try {
@@ -31,10 +30,10 @@ public class Menu extends JFrame implements ActionListener {
 			JLabel bg = new JLabel();
 			setContentPane(bg);
 			setBackground(new Color(140, 210, 228));
-			
+
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
-			
+
 			// Etiqueta del títol de la finestra
 			lblMenu = new JLabel();
 			getContentPane().add(lblMenu);
@@ -155,5 +154,5 @@ public class Menu extends JFrame implements ActionListener {
 			System.exit(0);
 		}
 	}
-	
+
 }

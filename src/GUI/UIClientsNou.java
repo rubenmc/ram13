@@ -39,11 +39,10 @@ public class UIClientsNou extends JDialog implements ActionListener {
 			JLabel bg = new JLabel();
 			setContentPane(bg);
 			setBackground(new Color(140, 210, 228));
-			
+
 			this.parent = parent;
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
-			
 
 			// Títol de la finestra
 			lblClientsNou = new JLabel();
@@ -214,38 +213,47 @@ public class UIClientsNou extends JDialog implements ActionListener {
 
 		try {
 			data = new Date(txtNaixement.getText());
-			
-			if(comprovaMail(txtMail.getText())){
-				Particular particular = new Particular(BD.getParticularNextID(),
-						txtNom.getText(), txtTelefon.getText(), txtDNI.getText(),
-						txtMail.getText(), new java.sql.Date(data.getTime()));
 
-				if (arg0.getActionCommand().equals("modificar")) {
-					if (BD.modificaParticular(particular)) {
-						this.dispose();
-						parent.dispose();
-						UIClients inst = new UIClients();
-						inst.setLocationRelativeTo(null);
-						inst.setVisible(true);
+			if (comprovaMail(txtMail.getText())) {
+				String id = BD.getParticularNextID();
+				if (id != null) {
+					Particular particular = new Particular(id,
+							txtNom.getText(), txtTelefon.getText(),
+							txtDNI.getText(), txtMail.getText(),
+							new java.sql.Date(data.getTime()));
+
+					if (arg0.getActionCommand().equals("modificar")) {
+						if (BD.modificaParticular(particular)) {
+							this.dispose();
+							parent.dispose();
+							UIClients inst = new UIClients();
+							inst.setLocationRelativeTo(null);
+							inst.setVisible(true);
+						} else {
+							ErrorDialog error = new ErrorDialog(this, true,
+									"Error al modificar usuari");
+							error.setLocationRelativeTo(null);
+							error.setVisible(true);
+						}
 					} else {
-						ErrorDialog error = new ErrorDialog(this, true,
-								"Error al modificar usuari");
-						error.setLocationRelativeTo(null);
-						error.setVisible(true);
+						if (BD.afegeixParticular(particular)) {
+							this.dispose();
+							parent.dispose();
+							UIClients inst = new UIClients();
+							inst.setLocationRelativeTo(null);
+							inst.setVisible(true);
+						} else {
+							ErrorDialog error = new ErrorDialog(this, true,
+									"Error al crear usuari");
+							error.setLocationRelativeTo(null);
+							error.setVisible(true);
+						}
 					}
 				} else {
-					if (BD.afegeixParticular(particular)) {
-						this.dispose();
-						parent.dispose();
-						UIClients inst = new UIClients();
-						inst.setLocationRelativeTo(null);
-						inst.setVisible(true);
-					} else {
-						ErrorDialog error = new ErrorDialog(this, true,
-								"Error al crear usuari");
-						error.setLocationRelativeTo(null);
-						error.setVisible(true);
-					}
+					ErrorDialog error = new ErrorDialog(this, true,
+							"Error al crear usuari");
+					error.setLocationRelativeTo(null);
+					error.setVisible(true);
 				}
 			} else {
 				ErrorDialog error = new ErrorDialog(this, true,
@@ -253,7 +261,8 @@ public class UIClientsNou extends JDialog implements ActionListener {
 				error.setLocationRelativeTo(null);
 				error.setVisible(true);
 			}
-		} catch (IllegalArgumentException e){
+
+		} catch (IllegalArgumentException e) {
 			ErrorDialog error = new ErrorDialog(this, true,
 					"Data incorrecta. El format correcte és dia/mes/any");
 			error.setLocationRelativeTo(null);
@@ -262,8 +271,8 @@ public class UIClientsNou extends JDialog implements ActionListener {
 			e.printStackTrace();
 		}
 	}
-	
-	private static boolean comprovaMail(String mail){
+
+	private static boolean comprovaMail(String mail) {
 		if (mail.contains("@")) {
 			String resta = mail.substring(mail.indexOf('@'));
 			if (resta.contains(".")) {

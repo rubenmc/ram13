@@ -28,10 +28,10 @@ public class Compra {
 
 	/**
 	 * @param article
-	 * 					calculate de preu
+	 *            calculate de preu
 	 */
 	private void calculaPreu(Unitat[] article) {
-		for(int x =0;x<article.length;x++){
+		for (int x = 0; x < article.length; x++) {
 			preu += article[x].getPreu();
 		}
 	}

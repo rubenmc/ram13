@@ -7,8 +7,8 @@ public class Particular extends Persona {
 	private Date dataNaixement;
 
 	// Constructor
-	public Particular(String id, String nom, String telf, String NIF, String mail,
-			Date data) {
+	public Particular(String id, String nom, String telf, String NIF,
+			String mail, Date data) {
 		super(id, nom, telf, NIF, mail);
 		this.dataNaixement = data;
 	}

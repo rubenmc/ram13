@@ -32,7 +32,7 @@ public class TestMax extends javax.swing.JFrame {
 	}
 
 	private void calculateLocation() {
-		setSize(pantalla.width, pantalla.height-taskBarSize);
+		setSize(pantalla.width, pantalla.height - taskBarSize);
 		int locationx = (pantalla.width) / 2;
 		int locationy = (pantalla.height) / 2;
 		setLocation(locationx, locationy);

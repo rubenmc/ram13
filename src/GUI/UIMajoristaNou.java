@@ -14,18 +14,18 @@ import javax.swing.WindowConstants;
 @SuppressWarnings("serial")
 public class UIMajoristaNou extends JDialog implements ActionListener {
 
-	private JTextField 	txtNom;
-	private JTextField 	txtTelefon;
-	private JTextField 	txtNIF;
-	private JTextField 	txtContacte;
-	private JTextField 	txtMail;
-	private JButton 	btnGuardar;
-	private JLabel 		lblTitol;
-	private JLabel 		lblNom;
-	private JLabel 		lblTelefon;
-	private JLabel 		lblNIF;
-	private JLabel 		lblContacte;
-	private JLabel 		lblMail;
+	private JTextField txtNom;
+	private JTextField txtTelefon;
+	private JTextField txtNIF;
+	private JTextField txtContacte;
+	private JTextField txtMail;
+	private JButton btnGuardar;
+	private JLabel lblTitol;
+	private JLabel lblNom;
+	private JLabel lblTelefon;
+	private JLabel lblNIF;
+	private JLabel lblContacte;
+	private JLabel lblMail;
 
 	public UIMajoristaNou(Frame parent, boolean modal) {
 		super(parent, "Nova comanda", modal);

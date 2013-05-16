@@ -1,69 +1,111 @@
 package GUI;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
 import main.BD;
 
 @SuppressWarnings("serial")
 public class UIComandes extends JFrame implements ActionListener {
-	private JLabel 	lblTitol;
+	private JLabel lblTitol;
 	private JButton btnEditar;
 	private JButton btnTornar;
 	private JButton btnEliminar;
 	private JButton btnNou;
-	private Taula 	comandes;
+	private Taula comandes;
+	private Insets scnMax = getToolkit().getScreenInsets(
+			getGraphicsConfiguration());
+	private int taskBarSize = scnMax.bottom;
+	private Dimension pantalla = getToolkit().getScreenSize();
+	private URL imageURL = ClassLoader.getSystemResource("img/clients.png");
+	private URL imageURLbg = ClassLoader.getSystemResource("img/fondo.png");
+	private Icon icon = new ImageIcon(imageURL);
+	private Icon bgimg = new ImageIcon(imageURLbg);
 
 	public UIComandes() {
 		super("Apartat de Comandes");
 		try {
+			JLabel bg = new JLabel();
+			bg.setIcon(bgimg);
+			bg.setSize(pantalla.width, pantalla.height);
+			setContentPane(bg);
+
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
+			calculateLocation();
+			setBackground(new Color(140, 210, 228));
+
 			// Etiqueta de titol
 			lblTitol = new JLabel();
 			getContentPane().add(lblTitol);
-			lblTitol.setText("GESTIÓ DE COMANDES");
-			lblTitol.setBounds(12, 12, 279, 16);
+			lblTitol.setIcon(icon);
+			lblTitol.setBounds(pantalla.width / 4, pantalla.height / 40,
+					pantalla.width / 2, 60);
+			lblTitol.setHorizontalAlignment(SwingConstants.CENTER);
+
 			// Taula per mostrar les comandes de la BD
-			comandes = BD.getDades("provaparticular",1,1);
-			getContentPane().add(comandes);
-			comandes.setBounds(12, 40, 575, 158);
+			comandes = BD.getDadesParticular(pantalla.width, pantalla.height
+					- taskBarSize);
+			comandes.setBackground(new Color(140, 210, 228));
+			comandes.setBounds(0, pantalla.height / 4, pantalla.width,
+					comandes.getTableHeight());
+			add(comandes);
+
 			// Boto per afegir una comanda nova
 			btnNou = new JButton();
 			getContentPane().add(btnNou);
 			btnNou.setText("Nou");
-			btnNou.setBounds(12, 228, 80, 23);
+			btnNou.setBounds(0, (int) ((pantalla.height - taskBarSize) / 1.25),
+					pantalla.width / 4,
+					(int) ((pantalla.height - taskBarSize) / 10));
 			btnNou.addActionListener(this);
 			btnNou.setActionCommand("btnNou");
+
 			// Boto per eliminar una comanda
 			btnEliminar = new JButton();
 			getContentPane().add(btnEliminar);
 			btnEliminar.setText("Eliminar");
-			btnEliminar.setBounds(97, 228, 80, 23);
+			btnEliminar.setBounds(pantalla.width / 4,
+					(int) ((pantalla.height - taskBarSize) / 1.25),
+					pantalla.width / 4,
+					(int) ((pantalla.height - taskBarSize) / 10));
 			btnEliminar.addActionListener(this);
 			btnEliminar.setActionCommand("btnEliminar");
+
 			// Boto per editar una comanda
 			btnEditar = new JButton();
 			getContentPane().add(btnEditar);
 			btnEditar.setText("Editar");
-			btnEditar.setBounds(182, 228, 80, 23);
+			btnEditar.setBounds((pantalla.width / 4) * 2,
+					(int) ((pantalla.height - taskBarSize) / 1.25),
+					pantalla.width / 4,
+					(int) ((pantalla.height - taskBarSize) / 10));
 			btnEditar.addActionListener(this);
 			btnEditar.setActionCommand("btnEditar");
+
 			// Boto per tornar al menu
 			btnTornar = new JButton();
 			getContentPane().add(btnTornar);
 			btnTornar.setText("Tornar");
-			btnTornar.setBounds(434, 228, 153, 23);
+			btnTornar.setBounds((pantalla.width / 4) * 3,
+					(int) ((pantalla.height - taskBarSize) / 1.25),
+					pantalla.width / 4,
+					(int) ((pantalla.height - taskBarSize) / 10));
 			btnTornar.addActionListener(this);
 			btnTornar.setActionCommand("btnTornar");
 
-			pack();
-			this.setSize(624, 300);
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -82,6 +124,13 @@ public class UIComandes extends JFrame implements ActionListener {
 			inst.setLocationRelativeTo(null);
 			inst.setVisible(true);
 		}
+	}
+
+	private void calculateLocation() {
+		setSize(pantalla.width, pantalla.height - taskBarSize);
+		int locationx = (pantalla.width) / 2;
+		int locationy = (pantalla.height) / 2;
+		setLocation(locationx, locationy);
 	}
 
 }

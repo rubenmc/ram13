@@ -6,21 +6,22 @@ import java.security.NoSuchAlgorithmException;
 
 public class TestCodifica {
 
-
-	public static void main(String[] args) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-		String originalPassword = new String("En un lugar de la mancha de cullo nombre no me quiero recordar");
+	public static void main(String[] args) throws UnsupportedEncodingException,
+			NoSuchAlgorithmException {
+		String originalPassword = new String(
+				"En un lugar de la mancha de cullo nombre no me quiero recordar");
 		String originalPassword2 = new String("ruben");
-		
+
 		byte[] plainText = originalPassword.getBytes("UTF8");
 		byte[] plainText2 = originalPassword2.getBytes("UTF8");
-		
+
 		System.out.println(originalPassword);
 		System.out.println(originalPassword2);
 		// get a message digest object using the MD5 algorithm
 		MessageDigest messageDigest = MessageDigest.getInstance("MD5");
 
 		// print out the provider used
-		//System.out.println("\n" + messageDigest.getProvider().getInfo());
+		// System.out.println("\n" + messageDigest.getProvider().getInfo());
 
 		// calculate the digest and print it out
 		messageDigest.update(plainText);
@@ -33,7 +34,6 @@ public class TestCodifica {
 		}
 		System.out.println(sb.toString());
 
-		
 		messageDigest.update(plainText2);
 		System.out.println("\nDigest: ");
 

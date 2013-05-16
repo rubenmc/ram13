@@ -10,23 +10,21 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-
-
 @SuppressWarnings("serial")
 public class UIComandesNou extends JDialog implements ActionListener {
 
-	private JTextField 	txtData;
-	private JTextField 	txtEmpleat;
-	private JTextField 	txtProveidor;
-	private JTextField 	txtArticle;
-	private JTextField 	txtPreu;
-	private JButton 	btnGuardar;
-	private JLabel 		lblTitol;
-	private JLabel 		lblData;
-	private JLabel 		lblEmpleat;
-	private JLabel 		lblProveidor;
-	private JLabel 		lblArticle;
-	private JLabel 		lblPreu;
+	private JTextField txtData;
+	private JTextField txtEmpleat;
+	private JTextField txtProveidor;
+	private JTextField txtArticle;
+	private JTextField txtPreu;
+	private JButton btnGuardar;
+	private JLabel lblTitol;
+	private JLabel lblData;
+	private JLabel lblEmpleat;
+	private JLabel lblProveidor;
+	private JLabel lblArticle;
+	private JLabel lblPreu;
 
 	public UIComandesNou(Frame parent, boolean modal) {
 		super(parent, "Nova comanda", modal);

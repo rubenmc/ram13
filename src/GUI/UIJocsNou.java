@@ -13,14 +13,14 @@ import javax.swing.WindowConstants;
 
 @SuppressWarnings("serial")
 public class UIJocsNou extends JDialog implements ActionListener {
-	private JTextField 	txtPreu;
-	private JTextField 	txtProveidor;
-	private JTextField 	txtNom;
-	private JButton 	btnGuardar;
-	private JLabel 		lblTitol;
-	private JLabel 		lblProveidor;
-	private JLabel 		lblPreu;
-	private JLabel 		lblNom;
+	private JTextField txtPreu;
+	private JTextField txtProveidor;
+	private JTextField txtNom;
+	private JButton btnGuardar;
+	private JLabel lblTitol;
+	private JLabel lblProveidor;
+	private JLabel lblPreu;
+	private JLabel lblNom;
 
 	public UIJocsNou(Frame parent, boolean modal) {
 		super(parent, "Nou Joc", modal);

@@ -1,69 +1,111 @@
 package GUI;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
 import main.BD;
 
 @SuppressWarnings("serial")
 public class UITendes extends JFrame implements ActionListener {
-	private JButton lblEditar;
-	private JButton lblTornar;
-	private JButton lblEliminar;
+	private JButton btnEditar;
+	private JButton btnTornar;
+	private JButton btnEliminar;
 	private JButton btnNou;
-	private JLabel 	lblTitol;
-	private Taula 	tendes;
+	private JLabel lblTitol;
+	private Taula tendes;
+	private Insets scnMax = getToolkit().getScreenInsets(
+			getGraphicsConfiguration());
+	private int taskBarSize = scnMax.bottom;
+	private Dimension pantalla = getToolkit().getScreenSize();
+	private URL imageURL = ClassLoader.getSystemResource("img/clients.png");
+	private URL imageURLbg = ClassLoader.getSystemResource("img/fondo.png");
+	private Icon icon = new ImageIcon(imageURL);
+	private Icon bgimg = new ImageIcon(imageURLbg);
 
 	public UITendes() {
 		super("Apartat de Tendes");
 		try {
+			JLabel bg = new JLabel();
+			bg.setIcon(bgimg);
+			bg.setSize(pantalla.width, pantalla.height);
+			setContentPane(bg);
+
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
+			calculateLocation();
+			setBackground(new Color(140, 210, 228));
+
 			// Etiqueta de titol
 			lblTitol = new JLabel();
 			getContentPane().add(lblTitol);
-			lblTitol.setText("GESTIÓ DE TENDES");
-			lblTitol.setBounds(12, 12, 279, 16);
+			lblTitol.setIcon(icon);
+			lblTitol.setBounds(pantalla.width / 4, pantalla.height / 40,
+					pantalla.width / 2, 60);
+			lblTitol.setHorizontalAlignment(SwingConstants.CENTER);
+
 			// Taula per veure les tendes de la BD
-			tendes = BD.getDades("provaparticular",1,1);
-			getContentPane().add(tendes);
-			tendes.setBounds(12, 40, 575, 158);
+			tendes = BD.getDadesParticular(pantalla.width, pantalla.height
+					- taskBarSize);
+			tendes.setBackground(new Color(140, 210, 228));
+			tendes.setBounds(0, pantalla.height / 4, pantalla.width,
+					tendes.getTableHeight());
+			add(tendes);
+
 			// Boto per afegir una nova tenda
 			btnNou = new JButton();
 			getContentPane().add(btnNou);
 			btnNou.setText("Nou");
-			btnNou.setBounds(12, 229, 80, 23);
+			btnNou.setBounds(0, (int) ((pantalla.height - taskBarSize) / 1.25),
+					pantalla.width / 4,
+					(int) ((pantalla.height - taskBarSize) / 10));
 			btnNou.addActionListener(this);
 			btnNou.setActionCommand("btnNou");
-			// Boto per eliminar una tenda
-			lblEliminar = new JButton();
-			getContentPane().add(lblEliminar);
-			lblEliminar.setText("Eliminar");
-			lblEliminar.setBounds(97, 229, 80, 23);
-			lblEliminar.addActionListener(this);
-			lblEliminar.setActionCommand("btnEliminar");
-			// Boto per editar una tenda
-			lblEditar = new JButton();
-			getContentPane().add(lblEditar);
-			lblEditar.setText("Editar");
-			lblEditar.setBounds(182, 229, 80, 23);
-			lblEditar.addActionListener(this);
-			lblEditar.setActionCommand("btnEditar");
-			// Boto per tornar al menu
-			lblTornar = new JButton();
-			getContentPane().add(lblTornar);
-			lblTornar.setText("Tornar");
-			lblTornar.setBounds(435, 229, 153, 23);
-			lblTornar.addActionListener(this);
-			lblTornar.setActionCommand("btnTornar");
 
-			pack();
-			this.setSize(615, 301);
+			// Boto per eliminar una tenda
+			btnEliminar = new JButton();
+			getContentPane().add(btnEliminar);
+			btnEliminar.setText("Eliminar");
+			btnEliminar.setBounds(pantalla.width / 4,
+					(int) ((pantalla.height - taskBarSize) / 1.25),
+					pantalla.width / 4,
+					(int) ((pantalla.height - taskBarSize) / 10));
+			btnEliminar.addActionListener(this);
+			btnEliminar.setActionCommand("btnEliminar");
+
+			// Boto per editar una tenda
+			btnEditar = new JButton();
+			getContentPane().add(btnEditar);
+			btnEditar.setText("Editar");
+			btnEditar.setBounds((pantalla.width / 4) * 2,
+					(int) ((pantalla.height - taskBarSize) / 1.25),
+					pantalla.width / 4,
+					(int) ((pantalla.height - taskBarSize) / 10));
+			btnEditar.addActionListener(this);
+			btnEditar.setActionCommand("btnEditar");
+
+			// Boto per tornar al menu
+			btnTornar = new JButton();
+			getContentPane().add(btnTornar);
+			btnTornar.setText("Tornar");
+			btnTornar.setBounds((pantalla.width / 4) * 3,
+					(int) ((pantalla.height - taskBarSize) / 1.25),
+					pantalla.width / 4,
+					(int) ((pantalla.height - taskBarSize) / 10));
+			btnTornar.addActionListener(this);
+			btnTornar.setActionCommand("btnTornar");
+
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -82,6 +124,13 @@ public class UITendes extends JFrame implements ActionListener {
 			inst.setLocationRelativeTo(null);
 			inst.setVisible(true);
 		}
+	}
+
+	private void calculateLocation() {
+		setSize(pantalla.width, pantalla.height - taskBarSize);
+		int locationx = (pantalla.width) / 2;
+		int locationy = (pantalla.height) / 2;
+		setLocation(locationx, locationy);
 	}
 
 }
