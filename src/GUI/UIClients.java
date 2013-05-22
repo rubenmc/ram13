@@ -2,10 +2,13 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
 
 import javax.swing.Icon;
@@ -26,18 +29,21 @@ public class UIClients extends JFrame implements ActionListener {
 	private JButton btnEliminar;
 	private JButton btnParticular;
 	private JLabel lblTitol;
-	private Taula clients;
+	private Taula particulars;
+	private Taula majoristes;
 	private Insets scnMax = getToolkit().getScreenInsets(
 			getGraphicsConfiguration());
 	private int taskBarSize = scnMax.bottom;
 	private Dimension pantalla = getToolkit().getScreenSize();
 	private URL imageURL = ClassLoader.getSystemResource("img/clients.png");
 	private URL imageURLbg = ClassLoader.getSystemResource("img/fondo.png");
+	private Font font;
 	private Icon icon = new ImageIcon(imageURL);
 	private Icon bgimg = new ImageIcon(imageURLbg);
 
 	public UIClients() {
 		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, new File("src/res/avant.ttf")).deriveFont(Font.BOLD, 24);
 			JLabel bg = new JLabel();
 			bg.setIcon(bgimg);
 			bg.setSize(pantalla.width, pantalla.height);
@@ -57,12 +63,24 @@ public class UIClients extends JFrame implements ActionListener {
 			lblTitol.setHorizontalAlignment(SwingConstants.CENTER);
 
 			// Taula amb els clients de la BD
-			clients = BD.getDadesParticular(pantalla.width, pantalla.height
+			particulars = BD.getDades("particulars",pantalla.width, pantalla.height
 					- taskBarSize);
-			clients.setBackground(new Color(140, 210, 228));
-			clients.setBounds(0, pantalla.height / 4, pantalla.width,
-					clients.getTableHeight());
-			add(clients);
+			if(particulars!=null){
+				particulars.setBackground(new Color(140, 210, 228));
+				particulars.setBounds(0, pantalla.height / 4, pantalla.width,
+						particulars.getTableHeight());
+				add(particulars);
+			}
+			
+			majoristes = BD.getDades("majoristes",pantalla.width, pantalla.height
+					- taskBarSize);
+			if(majoristes!=null){
+				majoristes.setBackground(new Color(140, 210, 228));
+				majoristes.setBounds(0, (pantalla.height / 4)*2, pantalla.width,
+						majoristes.getTableHeight());
+				add(majoristes);
+			}
+			
 
 			// Boto per afegir un nou particular
 			btnParticular = new JButton();
@@ -74,7 +92,9 @@ public class UIClients extends JFrame implements ActionListener {
 					(int) ((pantalla.height - taskBarSize) / 10));
 			btnParticular.addActionListener(this);
 			btnParticular.setActionCommand("btnParticular");
-
+			btnParticular.setFont(font);
+		
+			
 			// Boto per afegir un nou majorista
 			btnMajorista = new JButton();
 			getContentPane().add(btnMajorista);
@@ -85,6 +105,7 @@ public class UIClients extends JFrame implements ActionListener {
 					(int) ((pantalla.height - taskBarSize) / 10));
 			btnMajorista.addActionListener(this);
 			btnMajorista.setActionCommand("btnMajorista");
+			btnMajorista.setFont(font);
 
 			// Boto per eliminar un client
 			btnEliminar = new JButton();
@@ -96,6 +117,7 @@ public class UIClients extends JFrame implements ActionListener {
 					(int) ((pantalla.height - taskBarSize) / 10));
 			btnEliminar.addActionListener(this);
 			btnEliminar.setActionCommand("btnEliminar");
+			btnEliminar.setFont(font);
 
 			// Boto per editar un client
 			btnEditar = new JButton();
@@ -107,6 +129,7 @@ public class UIClients extends JFrame implements ActionListener {
 					(int) ((pantalla.height - taskBarSize) / 10));
 			btnEditar.addActionListener(this);
 			btnEditar.setActionCommand("btnEditar");
+			btnEditar.setFont(font);
 
 			// Boto per tornar al menu
 			btnTornar = new JButton();
@@ -118,6 +141,7 @@ public class UIClients extends JFrame implements ActionListener {
 					(int) ((pantalla.height - taskBarSize) / 10));
 			btnTornar.addActionListener(this);
 			btnTornar.setActionCommand("btnTornar");
+			btnTornar.setFont(font);
 
 		} catch (Exception e) {
 
@@ -142,20 +166,20 @@ public class UIClients extends JFrame implements ActionListener {
 			inst.setVisible(true);
 		} else if (e.getActionCommand().equals("btnEditar")) {
 			boolean fi = false;
-			for (int x = 0; x < clients.getTableModel().getRowCount() && !fi; x++) {
-				boolean check = (boolean) clients.getTableModel().getValueAt(x,
+			for (int x = 0; x < particulars.getTableModel().getRowCount() && !fi; x++) {
+				boolean check = (boolean) particulars.getTableModel().getValueAt(x,
 						5);
 				if (check) {
 					String[] dades = new String[5];
-					dades[0] = clients.getTableModel().getValueAt(x, 0)
+					dades[0] = particulars.getTableModel().getValueAt(x, 0)
 							.toString();// Nom
-					dades[1] = clients.getTableModel().getValueAt(x, 1)
+					dades[1] = particulars.getTableModel().getValueAt(x, 1)
 							.toString();// telf
-					dades[2] = clients.getTableModel().getValueAt(x, 2)
+					dades[2] = particulars.getTableModel().getValueAt(x, 2)
 							.toString();// nif
-					dades[3] = clients.getTableModel().getValueAt(x, 3)
+					dades[3] = particulars.getTableModel().getValueAt(x, 3)
 							.toString().replaceAll("-", "/");// Datanaixement
-					dades[4] = clients.getTableModel().getValueAt(x, 4)
+					dades[4] = particulars.getTableModel().getValueAt(x, 4)
 							.toString();// mail
 					UIClientsNou inst = new UIClientsNou(this, true, dades);
 					inst.setLocationRelativeTo(null);
@@ -164,11 +188,11 @@ public class UIClients extends JFrame implements ActionListener {
 				}
 			}
 		} else if (e.getActionCommand().equals("btnEliminar")) {
-			for (int x = 0; x < clients.getTableModel().getRowCount(); x++) {
-				boolean check = (boolean) clients.getTableModel().getValueAt(x,
+			for (int x = 0; x < particulars.getTableModel().getRowCount(); x++) {
+				boolean check = (boolean) particulars.getTableModel().getValueAt(x,
 						5);
 				if (check) {
-					if (BD.eliminarParticular(clients.getTableModel()
+					if (BD.eliminarParticular(particulars.getTableModel()
 							.getValueAt(x, 2).toString())) {
 					} else {
 						ErrorDialog error = new ErrorDialog(this, true,

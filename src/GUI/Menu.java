@@ -1,8 +1,10 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,16 +19,18 @@ public class Menu extends JFrame implements ActionListener {
 	private JButton btnComandes;
 	private JButton btnSortir;
 	private JButton btnConsultes;
-	private JButton btnEmpleat;
+	private JButton btnEmpleats;
 	private JButton btnTancar;
 	private JButton btnClients;
 	private JButton btnTendes;
 	private JButton btnJocs;
+	private JButton btnUnitats;
+	private Font font;
 
 	public Menu() {
 		super("Menú Principal");
 		try {
-
+			font = Font.createFont(Font.TRUETYPE_FONT, new File("src/res/avant.ttf")).deriveFont(Font.BOLD, 16);
 			JLabel bg = new JLabel();
 			setContentPane(bg);
 			setBackground(new Color(140, 210, 228));
@@ -37,8 +41,10 @@ public class Menu extends JFrame implements ActionListener {
 			// Etiqueta del títol de la finestra
 			lblMenu = new JLabel();
 			getContentPane().add(lblMenu);
-			lblMenu.setText("MENÚ PRINCIPAL DE L'APLICATIU");
-			lblMenu.setBounds(86, 12, 242, 16);
+			lblMenu.setText("MENÚ PRINCIPAL");
+			lblMenu.setBounds(0, 12, 400, 23);
+			lblMenu.setFont(font);
+			lblMenu.setHorizontalAlignment(JLabel.CENTER);
 
 			// Botó d'accés a l'apartat de jocs
 			btnJocs = new JButton();
@@ -47,64 +53,91 @@ public class Menu extends JFrame implements ActionListener {
 			btnJocs.setBounds(44, 40, 292, 23);
 			btnJocs.addActionListener(this);
 			btnJocs.setActionCommand("btnJocs");
+			btnJocs.setFont(font);
+			btnJocs.setHorizontalAlignment(JLabel.CENTER);
 
 			// Botó d'accés a la gestió de tendes
 			btnTendes = new JButton();
 			getContentPane().add(btnTendes);
 			btnTendes.setText("Gestió de Tendes");
-			btnTendes.setBounds(44, 74, 292, 23);
+			btnTendes.setBounds(44, 70, 292, 23);
 			btnTendes.addActionListener(this);
 			btnTendes.setActionCommand("btnTendes");
+			btnTendes.setFont(font);
+			btnTendes.setHorizontalAlignment(JLabel.CENTER);
 
 			// Botó d'accés a l'apartat de comandes
 			btnComandes = new JButton();
 			getContentPane().add(btnComandes);
 			btnComandes.setText("Gestió de Comandes");
-			btnComandes.setBounds(44, 108, 292, 23);
+			btnComandes.setBounds(44, 100, 292, 23);
 			btnComandes.addActionListener(this);
 			btnComandes.setActionCommand("btnComandes");
+			btnComandes.setFont(font);
+			btnComandes.setHorizontalAlignment(JLabel.CENTER);
 
 			// Botó d'accés a la gestió de clients
 			btnClients = new JButton();
 			getContentPane().add(btnClients);
 			btnClients.setText("Gestió de Clients");
-			btnClients.setBounds(44, 142, 292, 23);
+			btnClients.setBounds(44, 130, 292, 23);
 			btnClients.addActionListener(this);
 			btnClients.setActionCommand("btnClients");
+			btnClients.setFont(font);
+			btnClients.setHorizontalAlignment(JLabel.CENTER);
 
 			// Botó que dona accés a la gestió d'empleats
-			btnEmpleat = new JButton();
-			getContentPane().add(btnEmpleat);
-			btnEmpleat.setText("Gestió d'Empleats");
-			btnEmpleat.setBounds(44, 173, 292, 23);
-			btnEmpleat.addActionListener(this);
-			btnEmpleat.setActionCommand("btnEmpleat");
+			btnEmpleats = new JButton();
+			getContentPane().add(btnEmpleats);
+			btnEmpleats.setText("Gestió d'Empleats");
+			btnEmpleats.setBounds(44, 160, 292, 23);
+			btnEmpleats.addActionListener(this);
+			btnEmpleats.setActionCommand("btnEmpleat");
+			btnEmpleats.setFont(font);
+			btnEmpleats.setHorizontalAlignment(JLabel.CENTER);
+			
+			// Botó que dona accés a la gestió d'empleats
+			btnUnitats = new JButton();
+			getContentPane().add(btnUnitats);
+			btnUnitats.setText("Gestió d'Unitats");
+			btnUnitats.setBounds(44, 190, 292, 23);
+			btnUnitats.addActionListener(this);
+			btnUnitats.setActionCommand("btnUnitats");
+			btnUnitats.setFont(font);
+			btnUnitats.setHorizontalAlignment(JLabel.CENTER);
 
 			// Botó que tanca la sesió de l'usuari
 			btnTancar = new JButton();
 			getContentPane().add(btnTancar);
-			btnTancar.setText("Tancar la sessió");
-			btnTancar.setBounds(44, 207, 143, 34);
+			btnTancar.setText("Tancar sessió");
+			btnTancar.setBounds(44, 220, 143, 34);
 			btnTancar.addActionListener(this);
 			btnTancar.setActionCommand("btnTancar");
+			btnTancar.setFont(font);
+			btnTancar.setHorizontalAlignment(JLabel.CENTER);
 
 			// Botó que crida a la finestra de consultes
 			btnConsultes = new JButton();
 			getContentPane().add(btnConsultes);
 			btnConsultes.setText("Consultar");
-			btnConsultes.setBounds(192, 207, 143, 34);
+			btnConsultes.setBounds(192, 220, 143, 34);
 			btnConsultes.addActionListener(this);
 			btnConsultes.setActionCommand("btnConsulta");
+			btnConsultes.setFont(font);
+			btnConsultes.setHorizontalAlignment(JLabel.CENTER);
 
 			// Botó que tanca la sessio i surt de l'aplicaciu
 			btnSortir = new JButton();
 			getContentPane().add(btnSortir);
-			btnSortir.setText("Sortir de l'aplicatiu");
-			btnSortir.setBounds(43, 252, 292, 35);
+			btnSortir.setText("Sortir");
+			btnSortir.setBounds(43, 270, 292, 35);
 			btnSortir.addActionListener(this);
 			btnSortir.setActionCommand("btnSortir");
+			btnSortir.setFont(font);
+			btnSortir.setHorizontalAlignment(JLabel.CENTER);
+			
 			pack();
-			this.setSize(391, 364);
+			this.setSize(400, 365);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -136,6 +169,11 @@ public class Menu extends JFrame implements ActionListener {
 		} else if (e.getActionCommand().equals("btnEmpleat")) {
 			this.dispose();
 			UITreballadors inst = new UITreballadors();
+			inst.setLocationRelativeTo(null);
+			inst.setVisible(true);
+		} else if (e.getActionCommand().equals("btnUnitats")) {
+			this.dispose();
+			UIUnitats inst = new UIUnitats();
 			inst.setLocationRelativeTo(null);
 			inst.setVisible(true);
 		} else if (e.getActionCommand().equals("btnConsulta")) {

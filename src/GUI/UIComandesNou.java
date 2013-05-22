@@ -1,8 +1,10 @@
 package GUI;
 
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -25,10 +27,12 @@ public class UIComandesNou extends JDialog implements ActionListener {
 	private JLabel lblProveidor;
 	private JLabel lblArticle;
 	private JLabel lblPreu;
+	private Font font;
 
 	public UIComandesNou(Frame parent, boolean modal) {
 		super(parent, "Nova comanda", modal);
 		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, new File("src/res/avant.ttf")).deriveFont(Font.BOLD, 24);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
 
@@ -37,12 +41,14 @@ public class UIComandesNou extends JDialog implements ActionListener {
 			getContentPane().add(lblTitol);
 			lblTitol.setText("Nova comanda");
 			lblTitol.setBounds(12, 12, 354, 16);
+			lblTitol.setFont(font);
 
 			// Etiqueta de "Data"
 			lblData = new JLabel();
 			getContentPane().add(lblData);
 			lblData.setText("Data");
 			lblData.setBounds(50, 66, 66, 16);
+			lblData.setFont(font);
 
 			// Camp que guarda la data
 			txtData = new JTextField();
@@ -54,6 +60,7 @@ public class UIComandesNou extends JDialog implements ActionListener {
 			getContentPane().add(lblEmpleat);
 			lblEmpleat.setText("Empleat");
 			lblEmpleat.setBounds(51, 101, 87, 16);
+			lblEmpleat.setFont(font);
 
 			// Camp que guarda l'empleat
 			txtEmpleat = new JTextField();
@@ -65,6 +72,7 @@ public class UIComandesNou extends JDialog implements ActionListener {
 			getContentPane().add(lblProveidor);
 			lblProveidor.setText("Proveidor");
 			lblProveidor.setBounds(50, 136, 87, 16);
+			lblProveidor.setFont(font);
 
 			// Camp que guarda el Proveidor
 			txtProveidor = new JTextField();
@@ -76,6 +84,7 @@ public class UIComandesNou extends JDialog implements ActionListener {
 			getContentPane().add(lblArticle);
 			lblArticle.setText("Article");
 			lblArticle.setBounds(52, 171, 37, 16);
+			lblArticle.setFont(font);
 
 			// Camp que guarda article
 			txtArticle = new JTextField();
@@ -86,12 +95,14 @@ public class UIComandesNou extends JDialog implements ActionListener {
 			txtPreu = new JTextField();
 			getContentPane().add(txtPreu);
 			txtPreu.setBounds(144, 203, 168, 23);
+			
 
 			// Camp que gaurda el preu
 			lblPreu = new JLabel();
 			getContentPane().add(lblPreu);
 			lblPreu.setText("Preu");
 			lblPreu.setBounds(52, 206, 92, 16);
+			lblPreu.setFont(font);
 
 			// Botó guardar
 			btnGuardar = new JButton();
@@ -99,6 +110,7 @@ public class UIComandesNou extends JDialog implements ActionListener {
 			btnGuardar.setText("Guardar Entrada");
 			btnGuardar.setBounds(12, 251, 270, 23);
 			btnGuardar.setSize(224, 23);
+			btnGuardar.setFont(font);
 
 			pack();
 			this.setSize(400, 319);

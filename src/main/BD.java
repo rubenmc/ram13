@@ -6,9 +6,6 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-
 import GUI.Taula;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
@@ -79,7 +76,6 @@ public class BD {
 			e.printStackTrace();
 			return null;
 		}
-
 	}
 
 	/**
@@ -90,7 +86,7 @@ public class BD {
 	 * @throws SQLException
 	 */
 	public static boolean afegeixParticular(Particular particular) {
-		String sql_insert = "INSERT INTO provaparticular (`id` ,`nom` ,`nif` ,`telf` ,`datanaixement` ,`mail`) VALUES ('"
+		String sql_insert = "INSERT INTO particulars (`id` ,`nom` ,`nif` ,`telf` ,`datanaixement` ,`mail`) VALUES ('"
 				+ particular.getId()
 				+ "','"
 				+ particular.getNom()
@@ -114,7 +110,6 @@ public class BD {
 			e.printStackTrace();
 		}
 		return false;
-
 	}
 
 	/**
@@ -126,7 +121,7 @@ public class BD {
 	 */
 	public static boolean modificaParticular(Particular particular) {
 		String id = BD.getParticularID(particular.getNIF());
-		String sql_insert = "UPDATE provaparticular SET " + "nom='"
+		String sql_insert = "UPDATE particulars SET " + "nom='"
 				+ particular.getNom() + "'," + "nif='" + particular.getNIF()
 				+ "', " + "telf='" + particular.getTelf() + "',"
 				+ "datanaixement='" + particular.getDataNaixement() + "',"
@@ -152,8 +147,7 @@ public class BD {
 	 * @return
 	 */
 	public static boolean eliminarParticular(String nif) {
-		String sql_delete = "DELETE FROM provaparticular WHERE nif='" + nif
-				+ "';";
+		String sql_delete = "DELETE FROM particulars WHERE nif='" + nif + "';";
 		Statement sentencia;
 		try {
 			sentencia = CONEXIO.createStatement();
@@ -172,7 +166,7 @@ public class BD {
 	 * @return
 	 */
 	private static String getParticularID(String nif) {
-		String sql_query = "SELECT id FROM provaparticular where nif='" + nif
+		String sql_query = "SELECT id FROM particulars where nif='" + nif
 				+ "';";
 		Statement sentencia;
 		try {
@@ -185,8 +179,111 @@ public class BD {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return null;
+	}
+
+	/**
+	 * Metode per obtenir dades de la BD i mostrar-les en format correcte
+	 * 
+	 * @param taula
+	 * @return
+	 */
+	public static Taula getDades(String taula, int width, int height) {
+		String sql_query = "SELECT * FROM " + taula + ";";
+		String sql_count = "SELECT count(*) from "+taula+";";
+		ArrayList<String> camps = new ArrayList<String>();
+		Object[][] dades;
+		Statement sentencia;
+		ResultSet resul;
+		ResultSet noms;
+
+		try {
+			// Noms columnes
+			DatabaseMetaData dbmd = BD.CONEXIO.getMetaData();
+			noms = dbmd.getColumns(null, null, taula, null);
+			while (noms.next()) {
+				camps.add(noms.getString("COLUMN_NAME").toUpperCase());
+			}
+			camps.add("SELECCIONAR");
+
+			// Dades
+			sentencia = CONEXIO.createStatement();
+			resul = sentencia.executeQuery(sql_count);
+			resul.next();
+			dades = new Object[resul.getInt(1)][camps.size()];
+			resul = sentencia.executeQuery(sql_query);
+			int x = 0;
+			int y = 0;
+			while (resul.next()) {
+				for (y = 0; y < camps.size() - 1; y++) {
+					dades[x][y] = resul.getString(y + 1);
+				}
+				dades[x][y] = false;
+				x++;
+			}
+			if (dades[0][0] != null) {
+				Taula table = new Taula(dades, camps.toArray(new String[camps
+						.size()]), width, height);
+
+				return table;
+			} else {
+				return null;
+			}
+
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+	
+	/**
+	 * Metode per obtenir dades de la BD i mostrar-les en format correcte
+	 * 
+	 * @param taula
+	 * @return
+	 */
+	public static Taula getDadesConsulta(String taula, int width, int height) {
+		String sql_query = "SELECT * FROM " + taula + ";";
+		String sql_count = "SELECT count(*) from "+taula+";";
+		ArrayList<String> camps = new ArrayList<String>();
+		Object[][] dades;
+		Statement sentencia;
+		ResultSet resul;
+		ResultSet noms;
+
+		try {
+			// Noms columnes
+			DatabaseMetaData dbmd = BD.CONEXIO.getMetaData();
+			noms = dbmd.getColumns(null, null, taula, null);
+			while (noms.next()) {
+				camps.add(noms.getString("COLUMN_NAME").toUpperCase());
+			}
+
+			// Dades
+			sentencia = CONEXIO.createStatement();
+			resul = sentencia.executeQuery(sql_count);
+			resul.next();
+			dades = new Object[resul.getInt(1)][camps.size()];
+			resul = sentencia.executeQuery(sql_query);
+			int x = 0;
+			int y = 0;
+			while (resul.next()) {
+				for (y = 0; y < camps.size(); y++) {
+					dades[x][y] = resul.getString(y + 1);
+				}
+				x++;
+			}
+			if (dades[0][0] != null) {
+				Taula table = new Taula(dades, camps.toArray(new String[camps
+						.size()]), width, height);
+
+				return table;
+			} else {
+				return null;
+			}
+
+		} catch (SQLException e) {
+			return null;
+		}
 	}
 
 	/**
@@ -211,6 +308,7 @@ public class BD {
 	 *            Password sense codificar
 	 * @return Password codificada
 	 */
+
 	private static String codifica(String pass) {
 		byte[] plainText;
 		try {
@@ -229,61 +327,12 @@ public class BD {
 			}
 			// Retornem l'string resultant
 			return sb.toString();
-		} catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
+			// Retornem null si hi ha hagut algun error
+		} catch (UnsupportedEncodingException e) {
+			return null;
+		} catch (NoSuchAlgorithmException e){
+			return null;
 		}
-		// Retornem null si hi ha hagut algun error
-		return null;
+
 	}
-
-	/**
-	 * Metode per obtenir dades de la BD i mostrar-les en format correcte
-	 * 
-	 * @param taula
-	 * @return
-	 */
-	public static Taula getDadesParticular(int width, int height) {
-		String sql_query = "SELECT nom,telf,nif,datanaixement,mail FROM provaparticular;";
-		String sql_count = "SELECT count(*) from provaparticular;";
-		ArrayList<String> camps = new ArrayList<String>();
-		Object[][] dades;
-		Statement sentencia;
-		ResultSet resul;
-		ResultSet noms;
-
-		try {
-			// Noms columnes
-			DatabaseMetaData dbmd = BD.CONEXIO.getMetaData();
-			noms = dbmd.getColumns(null, null, "provaparticular", null);
-			noms.next();
-			while (noms.next()) {
-				camps.add(noms.getString("COLUMN_NAME").toUpperCase());
-			}
-			camps.add("SELECCIONAR");
-
-			// Dades
-			sentencia = CONEXIO.createStatement();
-			resul = sentencia.executeQuery(sql_count);
-			resul.next();
-			dades = new Object[resul.getInt(1)][camps.size()];
-			resul = sentencia.executeQuery(sql_query);
-			int x = 0;
-			while (resul.next()) {
-				dades[x][0] = resul.getString(1);
-				dades[x][1] = resul.getString(2);
-				dades[x][2] = resul.getString(3);
-				dades[x][3] = resul.getString(4);
-				dades[x][4] = resul.getString(5);
-				dades[x][5] = false;
-				x++;
-			}
-
-			Taula table = new Taula(dades, camps.toArray(new String[camps
-					.size()]), width, height);
-
-			return table;
-		} catch (SQLException e) {
-		}
-		return null;
-	}
-
 }

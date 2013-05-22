@@ -20,7 +20,7 @@ import javax.swing.WindowConstants;
 import main.BD;
 
 @SuppressWarnings("serial")
-public class UITreballadors extends JFrame implements ActionListener {
+public class UIUnitats extends JFrame implements ActionListener {
 	private JButton btnEditar;
 	private JButton btnTornar;
 	private JButton btnEliminar;
@@ -31,14 +31,14 @@ public class UITreballadors extends JFrame implements ActionListener {
 			getGraphicsConfiguration());
 	private int taskBarSize = scnMax.bottom;
 	private Dimension pantalla = getToolkit().getScreenSize();
-	private URL imageURL = ClassLoader.getSystemResource("img/empleats.png");
+	private URL imageURL = ClassLoader.getSystemResource("img/unitats.png");
 	private URL imageURLbg = ClassLoader.getSystemResource("img/fondo.png");
 	private Icon icon = new ImageIcon(imageURL);
 	private Icon bgimg = new ImageIcon(imageURLbg);
 	private Font font;
 
-	public UITreballadors() {
-		super("Gestió de treballadors");
+	public UIUnitats() {
+		super("Gestió d'unitats");
 		try {
 			font = Font.createFont(Font.TRUETYPE_FONT, new File("src/res/avant.ttf")).deriveFont(Font.BOLD, 24);
 			JLabel bg = new JLabel();
@@ -60,7 +60,7 @@ public class UITreballadors extends JFrame implements ActionListener {
 			lblTitol.setHorizontalAlignment(SwingConstants.CENTER);
 
 			// Taula per veure els treballadors de la BD
-			treballadors = BD.getDades("empleats",pantalla.width,
+			treballadors = BD.getDades("unitats",pantalla.width,
 					pantalla.height - taskBarSize);
 			if(treballadors!=null){
 				treballadors.setBackground(new Color(140, 210, 228));
@@ -73,7 +73,7 @@ public class UITreballadors extends JFrame implements ActionListener {
 			// Boto per afegir un nou treballador
 			btnNou = new JButton();
 			getContentPane().add(btnNou);
-			btnNou.setText("Nou");
+			btnNou.setText("Nova Unitat");
 			btnNou.setBounds(0, (int) ((pantalla.height - taskBarSize) / 1.25),
 					pantalla.width / 4,
 					(int) ((pantalla.height - taskBarSize) / 10));
@@ -84,7 +84,7 @@ public class UITreballadors extends JFrame implements ActionListener {
 			// Boto per eliminar un treballador
 			btnEliminar = new JButton();
 			getContentPane().add(btnEliminar);
-			btnEliminar.setText("Eliminar");
+			btnEliminar.setText("Eliminar Unitat");
 			btnEliminar.setBounds(pantalla.width / 4,
 					(int) ((pantalla.height - taskBarSize) / 1.25),
 					pantalla.width / 4,
@@ -96,7 +96,7 @@ public class UITreballadors extends JFrame implements ActionListener {
 			// Boto per editar un treballador
 			btnEditar = new JButton();
 			getContentPane().add(btnEditar);
-			btnEditar.setText("Editar");
+			btnEditar.setText("Editar Unitat");
 			btnEditar.setBounds((pantalla.width / 4) * 2,
 					(int) ((pantalla.height - taskBarSize) / 1.25),
 					pantalla.width / 4,
@@ -145,3 +145,4 @@ public class UITreballadors extends JFrame implements ActionListener {
 	}
 
 }
+

@@ -1,8 +1,10 @@
 package GUI;
 
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -22,10 +24,12 @@ public class UITreballadorsNou extends JDialog implements ActionListener {
 	private JLabel lblTelefon;
 	private JLabel lblSS;
 	private JLabel lblTitol;
+	private Font font;
 
 	public UITreballadorsNou(Frame parent, boolean modal) {
 		super(parent, "Nou Treballador", modal);
 		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, new File("src/res/avant.ttf")).deriveFont(Font.BOLD, 24);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
 
@@ -34,12 +38,14 @@ public class UITreballadorsNou extends JDialog implements ActionListener {
 			getContentPane().add(lblTitol);
 			lblTitol.setText("Nou treballador");
 			lblTitol.setBounds(12, 12, 354, 16);
+			lblTitol.setFont(font);
 
 			// Etiqueta de "Nom del treballador"
 			lblNom = new JLabel();
 			getContentPane().add(lblNom);
 			lblNom.setText("Nom");
 			lblNom.setBounds(39, 58, 66, 16);
+			lblNom.setFont(font);
 
 			// Camp que guarda el nom del joc
 			txtNom = new JTextField();
@@ -51,6 +57,7 @@ public class UITreballadorsNou extends JDialog implements ActionListener {
 			getContentPane().add(lblDNI);
 			lblDNI.setText("DNI");
 			lblDNI.setBounds(39, 87, 87, 16);
+			lblDNI.setFont(font);
 
 			// Camp que guarda el preu
 			txtDNI = new JTextField();
@@ -62,6 +69,7 @@ public class UITreballadorsNou extends JDialog implements ActionListener {
 			getContentPane().add(lblTelefon);
 			lblTelefon.setText("Telefon");
 			lblTelefon.setBounds(39, 116, 87, 16);
+			lblTelefon.setFont(font);
 
 			// Camp que guarda la companyia
 			txtTelefon = new JTextField();
@@ -73,6 +81,7 @@ public class UITreballadorsNou extends JDialog implements ActionListener {
 			getContentPane().add(lblSS);
 			lblSS.setText("Nº de la SS");
 			lblSS.setBounds(39, 148, 37, 16);
+			lblSS.setFont(font);
 
 			// Camp que guarda el numero de la seguretat social
 			txtSS = new JTextField();
@@ -84,6 +93,7 @@ public class UITreballadorsNou extends JDialog implements ActionListener {
 			getContentPane().add(btnGuardar);
 			btnGuardar.setText("Guardar Treballador");
 			btnGuardar.setBounds(12, 180, 224, 23);
+			btnGuardar.setFont(font);
 
 			pack();
 			this.setSize(409, 248);

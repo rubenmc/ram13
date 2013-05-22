@@ -1,8 +1,11 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+
 import javax.swing.JButton;
 
 import javax.swing.JFrame;
@@ -21,11 +24,13 @@ public class Login extends JFrame implements ActionListener {
 	private JLabel lblTitol;
 	private JLabel lblPass;
 	private JLabel lblUser;
+	private Font font;
 	private BD bd;
 
 	public Login() {
 		super("Inici de Sessió");
 		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, new File("src/res/avant.ttf")).deriveFont(Font.BOLD, 16);
 			JLabel bg = new JLabel();
 			setContentPane(bg);
 			setBackground(new Color(140, 210, 228));
@@ -47,18 +52,21 @@ public class Login extends JFrame implements ActionListener {
 			getContentPane().add(lblUser);
 			lblUser.setText("Usuari");
 			lblUser.setBounds(18, 40, 74, 16);
+			lblUser.setFont(font);
 
 			// Etiqueta del password
 			lblPass = new JLabel();
 			getContentPane().add(lblPass);
 			lblPass.setText("Clau");
 			lblPass.setBounds(18, 68, 74, 16);
+			lblPass.setFont(font);
 
 			// Etiqueta títol
 			lblTitol = new JLabel();
 			getContentPane().add(lblTitol);
 			lblTitol.setText("Introdueix les dades de l'usuari");
 			lblTitol.setBounds(72, 12, 211, 16);
+			lblTitol.setFont(font);
 
 			// Botó per verificar el login
 			btnEntrar = new JButton();
@@ -66,15 +74,19 @@ public class Login extends JFrame implements ActionListener {
 			btnEntrar.setText("Accedir al programa");
 			btnEntrar.setBounds(18, 96, 265, 23);
 			btnEntrar.addActionListener(this);
+			btnEntrar.setFont(font);
 
 			pack();
-			this.setSize(332, 176);
+			this.setSize(340, 180);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	// Main del programa
+	/**
+	 * Metode principal
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Login inst = new Login();
 		inst.setLocationRelativeTo(null);
@@ -82,7 +94,9 @@ public class Login extends JFrame implements ActionListener {
 	}
 
 	@Override
-	// ActionPerformed del botó per accedir a l'aplicatiu
+	/**
+	 * Metode que s'executara al ingresar un usuari i una contrasenya
+	 */
 	public void actionPerformed(ActionEvent arg0) {
 		try {
 			bd = new BD();
@@ -111,7 +125,9 @@ public class Login extends JFrame implements ActionListener {
 				menu.setLocationRelativeTo(null);
 				menu.setVisible(true);
 			}
-		} catch (InstantiationException | IllegalAccessException e) {
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch  (IllegalAccessException e){
 			e.printStackTrace();
 		}
 	}

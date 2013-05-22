@@ -1,9 +1,11 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -31,16 +33,18 @@ public class UIClientsNou extends JDialog implements ActionListener {
 	private JLabel lblNom;
 	private JLabel lblTelefon;
 	private JLabel lblMail;
+	private Font font;
 	private Frame parent;
 
 	public UIClientsNou(Frame parent, boolean modal) {
 		super(parent, "Nou Client", modal);
 		try {
+			this.parent = parent;
+			font = Font.createFont(Font.TRUETYPE_FONT, new File("src/res/avant.ttf")).deriveFont(Font.BOLD, 24);
 			JLabel bg = new JLabel();
 			setContentPane(bg);
 			setBackground(new Color(140, 210, 228));
 
-			this.parent = parent;
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
 
@@ -49,12 +53,14 @@ public class UIClientsNou extends JDialog implements ActionListener {
 			getContentPane().add(lblClientsNou);
 			lblClientsNou.setText("Nou Client");
 			lblClientsNou.setBounds(12, 12, 354, 16);
+			lblClientsNou.setFont(font);
 
 			// Etiqueta de "Nom del treballador"
 			lblNom = new JLabel();
 			getContentPane().add(lblNom);
 			lblNom.setText("Client");
 			lblNom.setBounds(39, 58, 66, 16);
+			lblNom.setFont(font);
 
 			// Camp que guarda el nom del client
 			txtNom = new JTextField();
@@ -66,6 +72,7 @@ public class UIClientsNou extends JDialog implements ActionListener {
 			getContentPane().add(lblDNI);
 			lblDNI.setText("DNI");
 			lblDNI.setBounds(39, 87, 87, 16);
+			lblDNI.setFont(font);
 
 			// Camp que guarda el DNI
 			txtDNI = new JTextField();
@@ -77,6 +84,7 @@ public class UIClientsNou extends JDialog implements ActionListener {
 			getContentPane().add(lblTelefon);
 			lblTelefon.setText("Telefon");
 			lblTelefon.setBounds(39, 116, 87, 16);
+			lblTelefon.setFont(font);
 
 			// Camp que guarda la el telefon
 			txtTelefon = new JTextField();
@@ -89,6 +97,7 @@ public class UIClientsNou extends JDialog implements ActionListener {
 			btnGuardar.setText("Guardar Entrada");
 			btnGuardar.setBounds(12, 226, 224, 23);
 			btnGuardar.addActionListener(this);
+			btnGuardar.setFont(font);
 
 			// Text Field per guardar la data de naixement
 			txtNaixement = new JTextField();
@@ -100,6 +109,7 @@ public class UIClientsNou extends JDialog implements ActionListener {
 			getContentPane().add(lblNaixement);
 			lblNaixement.setText("Naixement");
 			lblNaixement.setBounds(39, 145, 99, 16);
+			lblNaixement.setFont(font);
 
 			// TextField per guardar el mail
 			txtMail = new JTextField();
@@ -111,6 +121,7 @@ public class UIClientsNou extends JDialog implements ActionListener {
 			getContentPane().add(lblMail);
 			lblMail.setText("Correu.e");
 			lblMail.setBounds(39, 176, 87, 16);
+			lblMail.setFont(font);
 
 			pack();
 			this.setSize(399, 293);

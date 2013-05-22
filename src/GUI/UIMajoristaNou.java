@@ -1,8 +1,10 @@
 package GUI;
 
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -26,10 +28,12 @@ public class UIMajoristaNou extends JDialog implements ActionListener {
 	private JLabel lblNIF;
 	private JLabel lblContacte;
 	private JLabel lblMail;
+	private Font font;
 
 	public UIMajoristaNou(Frame parent, boolean modal) {
-		super(parent, "Nova comanda", modal);
+		super(parent, "Nou Majorista", modal);
 		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, new File("src/res/avant.ttf")).deriveFont(Font.BOLD, 24);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
 
@@ -44,6 +48,7 @@ public class UIMajoristaNou extends JDialog implements ActionListener {
 			getContentPane().add(lblNom);
 			lblNom.setText("Nom");
 			lblNom.setBounds(39, 58, 66, 16);
+			lblNom.setFont(font);
 
 			// Camp que guarda la data
 			txtNom = new JTextField();
@@ -55,6 +60,7 @@ public class UIMajoristaNou extends JDialog implements ActionListener {
 			getContentPane().add(lblTelefon);
 			lblTelefon.setText("Telefon");
 			lblTelefon.setBounds(39, 87, 87, 16);
+			lblTelefon.setFont(font);
 
 			// Camp que guarda el emisor
 			txtTelefon = new JTextField();
@@ -66,6 +72,7 @@ public class UIMajoristaNou extends JDialog implements ActionListener {
 			getContentPane().add(lblNIF);
 			lblNIF.setText("NIF");
 			lblNIF.setBounds(39, 116, 87, 16);
+			lblNIF.setFont(font);
 
 			// Camp que guarda el Receptor
 			txtNIF = new JTextField();
@@ -77,6 +84,7 @@ public class UIMajoristaNou extends JDialog implements ActionListener {
 			getContentPane().add(lblContacte);
 			lblContacte.setText("Persona de Contacte");
 			lblContacte.setBounds(38, 148, 100, 16);
+			lblContacte.setFont(font);
 
 			// Camp que guarda el estat
 			txtContacte = new JTextField();
@@ -88,6 +96,7 @@ public class UIMajoristaNou extends JDialog implements ActionListener {
 			getContentPane().add(lblMail);
 			lblMail.setText("Correu.e");
 			lblMail.setBounds(40, 177, 99, 16);
+			lblMail.setFont(font);
 
 			// Camp que guarda ventes
 			txtMail = new JTextField();
@@ -99,6 +108,7 @@ public class UIMajoristaNou extends JDialog implements ActionListener {
 			getContentPane().add(btnGuardar);
 			btnGuardar.setText("Guardar Entrada");
 			btnGuardar.setBounds(12, 212, 224, 23);
+			btnGuardar.setFont(font);
 
 			pack();
 			this.setSize(408, 285);

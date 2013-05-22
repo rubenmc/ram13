@@ -1,8 +1,10 @@
 package GUI;
 
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -14,14 +16,16 @@ import javax.swing.WindowConstants;
 public class UITendesNou extends JDialog implements ActionListener {
 	private JTextField txtDireccio;
 	private JTextField txtTelefon;
-	private JButton lblGuardar;
+	private JButton btnGuardar;
 	private JLabel lblTitol;
 	private JLabel lblDireccio;
 	private JLabel lblTelefon;
+	private Font font;
 
 	public UITendesNou(Frame parent, boolean modal) {
 		super(parent, "Nova tenda", modal);
 		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, new File("src/res/avant.ttf")).deriveFont(Font.BOLD, 24);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
 
@@ -36,6 +40,7 @@ public class UITendesNou extends JDialog implements ActionListener {
 			getContentPane().add(lblDireccio);
 			lblDireccio.setText("Direcció");
 			lblDireccio.setBounds(39, 61, 66, 16);
+			lblDireccio.setFont(font);
 
 			// Camp que guarda la direcció de la tenda
 			txtDireccio = new JTextField();
@@ -47,6 +52,7 @@ public class UITendesNou extends JDialog implements ActionListener {
 			getContentPane().add(lblTelefon);
 			lblTelefon.setText("Telefon");
 			lblTelefon.setBounds(39, 90, 87, 16);
+			lblTelefon.setFont(font);
 
 			// Camp que guarda el telefon
 			txtTelefon = new JTextField();
@@ -54,10 +60,11 @@ public class UITendesNou extends JDialog implements ActionListener {
 			txtTelefon.setBounds(138, 87, 133, 23);
 
 			// Botó guardar
-			lblGuardar = new JButton();
-			getContentPane().add(lblGuardar);
-			lblGuardar.setText("Guardar Entrada");
-			lblGuardar.setBounds(12, 128, 224, 23);
+			btnGuardar = new JButton();
+			getContentPane().add(btnGuardar);
+			btnGuardar.setText("Guardar Entrada");
+			btnGuardar.setBounds(12, 128, 224, 23);
+			btnGuardar.setFont(font);
 
 			pack();
 			this.setSize(401, 195);
