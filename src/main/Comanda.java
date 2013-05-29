@@ -4,23 +4,43 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * 
+ * @author Ruben Macias i Albert Llauradó
+ * 
+ */
 public class Comanda {
 
-	private int id;
-	private int emisor;
-	private int receptor;
-	private boolean estat;
-	private Date data;
-	private Joc[] articles;
-	SimpleDateFormat formateador = new SimpleDateFormat(
+	private int 		id;
+	private int 		empleat;
+	private int 		proveidor;
+	private boolean 	estat;
+	private Date 		data;
+	private Joc[] 		articles;
+	SimpleDateFormat 	formateador = new SimpleDateFormat(
 			"d 'de' MMMM 'de' yyyy - HH:mm", new Locale("es"));
 
 	// Constructor
-	public Comanda(int id, int emisor, int receptor, boolean estat, Date data,
-			Joc[] articles) {
+	/**
+	 * 
+	 * @param id
+	 *            L'identificador de la comanda
+	 * @param empleat
+	 *            L'identificador de l'empleat
+	 * @param proveidor
+	 *            L'identificador del proveidor
+	 * @param estat
+	 *            L'estat de la comanda
+	 * @param data
+	 *            La data de la comanda
+	 * @param articles
+	 *            La llista d'articles
+	 */
+	public Comanda(int id, int empleat, int proveidor, boolean estat,
+			Date data, Joc[] articles) {
 		this.id = id;
-		this.emisor = emisor;
-		this.receptor = receptor;
+		this.empleat = empleat;
+		this.proveidor = proveidor;
 		this.estat = estat;
 		this.data = data;
 		this.articles = articles;
@@ -28,7 +48,7 @@ public class Comanda {
 
 	// Getters i Setters
 	/**
-	 * @return the id
+	 * @return L'id
 	 */
 	public int getId() {
 		return id;
@@ -36,44 +56,44 @@ public class Comanda {
 
 	/**
 	 * @param id
-	 *            the id to set
+	 *            El nou id
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the emisor
+	 * @return L'empleat
 	 */
-	public int getEmisor() {
-		return emisor;
+	public int getempleat() {
+		return empleat;
 	}
 
 	/**
-	 * @param emisor
-	 *            the emisor to set
+	 * @param empleat
+	 *            El nou empleat
 	 */
-	public void setEmisor(int emisor) {
-		this.emisor = emisor;
+	public void setempleat(int empleat) {
+		this.empleat = empleat;
 	}
 
 	/**
-	 * @return the receptor
+	 * @return El proveidor
 	 */
-	public int getReceptor() {
-		return receptor;
+	public int getproveidor() {
+		return proveidor;
 	}
 
 	/**
-	 * @param receptor
-	 *            the receptor to set
+	 * @param proveidor
+	 *            El nou proveidor
 	 */
-	public void setReceptor(int receptor) {
-		this.receptor = receptor;
+	public void setproveidor(int proveidor) {
+		this.proveidor = proveidor;
 	}
 
 	/**
-	 * @return the estat
+	 * @return L'estat
 	 */
 	public boolean isEstat() {
 		return estat;
@@ -81,14 +101,14 @@ public class Comanda {
 
 	/**
 	 * @param estat
-	 *            the estat to set
+	 *            El nou estat
 	 */
 	public void setEstat(boolean estat) {
 		this.estat = estat;
 	}
 
 	/**
-	 * @return the data
+	 * @return La data
 	 */
 	public Date getData() {
 		return data;
@@ -96,14 +116,14 @@ public class Comanda {
 
 	/**
 	 * @param data
-	 *            the data to set
+	 *            La nova data
 	 */
 	public void setData(Date data) {
 		this.data = data;
 	}
 
 	/**
-	 * @return the articles
+	 * @return Els articles
 	 */
 	public Joc[] getArticles() {
 		return articles;
@@ -111,7 +131,7 @@ public class Comanda {
 
 	/**
 	 * @param articles
-	 *            the articles to set
+	 *            Els nous articles
 	 */
 	public void setArticles(Joc[] articles) {
 		this.articles = articles;
@@ -119,12 +139,12 @@ public class Comanda {
 
 	@Override
 	public String toString() {
-		return emisor + " - " + receptor + " - " + formateador.format(data);
+		return empleat + " - " + proveidor + " - " + formateador.format(data);
 	}
 
 	public void display() {
-		System.out.println("\nDades de la comanda " + id + "\nEmissor-->"
-				+ emisor + "\nReceptor-->" + receptor + "\nData-->"
+		System.out.println("\nDades de la comanda " + id + "\nEmpleat-->"
+				+ empleat + "\nProveidor-->" + proveidor + "\nData-->"
 				+ formateador.format(data) + "\nArticles:");
 		for (int x = 0; x < articles.length; x++) {
 			System.out.println(articles[x] + " - " + articles[x].getPreu());

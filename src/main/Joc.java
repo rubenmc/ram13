@@ -1,31 +1,42 @@
 package main;
 
+/**
+ * 
+ * @author Ruben Macias i Albert Llauradó
+ * 
+ */
 public class Joc {
 
-	private String proveidor;
-	private String nom;
-	private String genere;
-	private float preu;
-	private int id;
+	private String 	proveidor;
+	private String 	nom;
+	private String 	genere;
+	private float 	preu;
+	private int 	id;
 
 	// Constructor
 	/**
 	 * @param id
+	 *            L'identificador del joc
 	 * @param nom
+	 *            El nom del joc
 	 * @param proveidor
+	 *            L'identificador del proveidor
 	 * @param preu
+	 *            El preu del joc
+	 * @param genere
+	 *            El genere del joc
 	 */
 	public Joc(int id, String nom, String proveidor, float preu, String genere) {
-		this.id = id;
-		this.nom = nom;
-		this.proveidor = proveidor;
-		this.preu = preu;
-		this.genere = genere;
+		this.id 		= id;
+		this.nom 		= nom;
+		this.proveidor 	= proveidor;
+		this.preu 		= preu;
+		this.genere 	= genere;
 	}
 
 	// Getters i Setters
 	/**
-	 * @return the proveidor
+	 * @return El proveidor
 	 */
 	public String getProveidor() {
 		return proveidor;
@@ -33,14 +44,14 @@ public class Joc {
 
 	/**
 	 * @param proveidor
-	 *            the proveidor to set
+	 *            El nou proveidor
 	 */
 	public void setProveidor(String proveidor) {
 		this.proveidor = proveidor;
 	}
 
 	/**
-	 * @return the nom
+	 * @return El nom
 	 */
 	public String getNom() {
 		return nom;
@@ -48,14 +59,14 @@ public class Joc {
 
 	/**
 	 * @param nom
-	 *            the nom to set
+	 *            El nou nom
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
 	/**
-	 * @return the preu
+	 * @return El preu
 	 */
 	public float getPreu() {
 		return preu;
@@ -63,14 +74,14 @@ public class Joc {
 
 	/**
 	 * @param preu
-	 *            the preu to set
+	 *            El nou preu
 	 */
 	public void setPreu(float preu) {
 		this.preu = preu;
 	}
 
 	/**
-	 * @return the id
+	 * @return L'id
 	 */
 	public int getId() {
 		return id;
@@ -78,14 +89,14 @@ public class Joc {
 
 	/**
 	 * @param id
-	 *            the id to set
+	 *            El nou id
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the genere
+	 * @return El genere
 	 */
 	public String getGenere() {
 		return genere;
@@ -93,7 +104,7 @@ public class Joc {
 
 	/**
 	 * @param genere
-	 *            the genere to set
+	 *            El nou genere
 	 */
 	public void setGenere(String genere) {
 		this.genere = genere;

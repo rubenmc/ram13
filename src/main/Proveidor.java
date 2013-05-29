@@ -1,36 +1,40 @@
 package main;
 
+/**
+ * 
+ * @author Ruben Macias i Albert Llauradó
+ * 
+ */
 public class Proveidor extends Persona {
 
-	private String personaContacte;
 	private String compteCorrent;
 
 	// Constructor
+	/**
+	 * 
+	 * @param id
+	 *            L'identificador del proveidor
+	 * @param nom
+	 *            El nom del proveidor
+	 * @param telf
+	 *            El telefon del proveidor
+	 * @param NIF
+	 *            El NIF del proveidor
+	 * @param mail
+	 *            El mail del proveidor
+	 * @param compte
+	 *            El compte corrent del proveidor
+	 */
 	public Proveidor(String id, String nom, String telf, String NIF,
-			String mail, String persona, String compte) {
+			String mail, String compte) {
 		super(id, nom, telf, NIF, mail);
-		this.personaContacte = persona;
 		this.compteCorrent = compte;
 	}
 
 	// Getters i Setters
-	/**
-	 * @return the personaContacte
-	 */
-	public String getPersonaContacte() {
-		return personaContacte;
-	}
 
 	/**
-	 * @param personaContacte
-	 *            the personaContacte to set
-	 */
-	public void setPersonaContacte(String personaContacte) {
-		this.personaContacte = personaContacte;
-	}
-
-	/**
-	 * @return the compteCorrent
+	 * @return El compte corrent
 	 */
 	public String getCompteCorrent() {
 		return compteCorrent;
@@ -38,7 +42,7 @@ public class Proveidor extends Persona {
 
 	/**
 	 * @param compte
-	 *            the compteCorrent to set
+	 *            El nou compte corrent
 	 */
 	public void setCompteCorrent(String compte) {
 		this.compteCorrent = compte;
@@ -52,8 +56,7 @@ public class Proveidor extends Persona {
 	@Override
 	public void display() {
 		super.display();
-		System.out.println("Persona de contacte-->" + personaContacte
-				+ "\nCompte corrent-->" + compteCorrent);
+		System.out.println("Compte corrent-->" + compteCorrent);
 
 	}
 

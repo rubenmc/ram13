@@ -1,5 +1,9 @@
 package main;
-
+/**
+ * 
+ * @author Ruben Macias i Albert Llauradó
+ *
+ */
 public class Unitat {
 
 	private int id;
@@ -9,18 +13,21 @@ public class Unitat {
 	// Constructor
 	/**
 	 * @param id
+	 *            Identificardor de la unitat
 	 * @param tenda
+	 *            Identificador de la tenda a la que pertany
 	 * @param joc
+	 *            Identificador del joc al que pertany
 	 */
 	public Unitat(int id, int tenda, int joc) {
-		this.id = id;
-		this.tenda = tenda;
-		this.joc = joc;
+		this.id 	= id;
+		this.tenda 	= tenda;
+		this.joc 	= joc;
 	}
 
 	// Getters i Setters
 	/**
-	 * @return the id
+	 * @return l'id
 	 */
 	public int getId() {
 		return id;
@@ -28,14 +35,14 @@ public class Unitat {
 
 	/**
 	 * @param id
-	 *            the id to set
+	 *            el nou id
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the tenda
+	 * @return la tenda
 	 */
 	public int getTenda() {
 		return tenda;
@@ -43,14 +50,14 @@ public class Unitat {
 
 	/**
 	 * @param tenda
-	 *            the tenda to set
+	 *            la nova tenda
 	 */
 	public void setTenda(int tenda) {
 		this.tenda = tenda;
 	}
 
 	/**
-	 * @return the joc
+	 * @return el joc
 	 */
 	public int getJoc() {
 		return joc;
@@ -58,7 +65,7 @@ public class Unitat {
 
 	/**
 	 * @param joc
-	 *            the joc to set
+	 *            el nou joc
 	 */
 	public void setJoc(int joc) {
 		this.joc = joc;
@@ -73,10 +80,4 @@ public class Unitat {
 		System.out.println("\nDades de la unitat " + id + " del joc " + joc
 				+ "\nTenda-->" + tenda + "\nPreu-->" + joc);
 	}
-
-	public float getPreu() {
-		// Consulta a BD utilizando el ID del juego y devolviendo el precio
-		return 0;
-	}
-
 }

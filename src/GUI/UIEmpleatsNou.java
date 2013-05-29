@@ -11,24 +11,28 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
 import javax.swing.WindowConstants;
 
 import main.BD;
-import main.Joc;
+import main.Empleat;
 
 @SuppressWarnings("serial")
-public class UIJocsNou extends JDialog implements ActionListener {
-	private JTextField 	txtPreu;
-	private JTextField 	txtProveidor;
+/**
+ * 
+ * @author Ruben Macias i Albert Llauradó
+ *
+ */
+public class UIEmpleatsNou extends JDialog implements ActionListener {
+	private JTextField 	txtDNI;
 	private JTextField 	txtNom;
-	private JTextField 	txtGenere;
+	private JTextField 	txtTenda;
+	private JTextField 	txtSS;
 	private JButton 	btnGuardar;
-	private JLabel 		lblTitol;
-	private JLabel 		lblProveidor;
-	private JLabel 		lblPreu;
+	private JLabel 		lblDNI;
 	private JLabel 		lblNom;
-	private JLabel 		lblGenere;
+	private JLabel 		lblTenda;
+	private JLabel 		lblSS;
+	private JLabel 		lblTitol;
 	private Font 		font;
 	private Frame 		parent;
 	private String[] 	dades;
@@ -39,8 +43,8 @@ public class UIJocsNou extends JDialog implements ActionListener {
 	 * @param parent
 	 *            Frame del pare
 	 */
-	public UIJocsNou(Frame parent) {
-		super(parent, "Nou Joc");
+	public UIEmpleatsNou(Frame parent) {
+		super(parent, "Nou Empleat");
 		this.parent = parent;
 		carregarGUI();
 		lblTitol.setText("Nou Joc");
@@ -54,16 +58,18 @@ public class UIJocsNou extends JDialog implements ActionListener {
 	 * @param dades
 	 *            Dades actuals del registre
 	 */
-	public UIJocsNou(Frame parent, String[] dades) {
-		super(parent, "Editar Joc");
+	public UIEmpleatsNou(Frame parent, String[] dades) {
+		super(parent, "Editar empleat");
 		this.dades = dades;
 		this.parent = parent;
 		carregarGUI();
-		lblTitol.setText("Editar Joc");
-		txtProveidor.setText(dades[1]);
-		txtNom.setText(dades[2]);
-		txtGenere.setText(dades[3]);
-		txtPreu.setText(dades[4]);
+		lblTitol.setText("Editar Empleat");
+		// Assignem valors
+		txtNom.setText(dades[1]);
+		txtSS.setText(dades[2]);
+		txtDNI.setText(dades[3]);
+		txtTenda.setText(dades[4]);
+		// Indiquem que es una modificació
 		btnGuardar.setActionCommand("modificar");
 	}
 
@@ -84,7 +90,7 @@ public class UIJocsNou extends JDialog implements ActionListener {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
 
-			// Títol de la finestra
+			// Etiqueta de titol
 			lblTitol = new JLabel();
 			getContentPane().add(lblTitol);
 			lblTitol.setBounds(12, 12, 354, 16);
@@ -97,46 +103,46 @@ public class UIJocsNou extends JDialog implements ActionListener {
 			lblNom.setBounds(40, 50, 100, 16);
 			lblNom.setFont(font);
 
-			// Etiqueta de preu
-			lblPreu = new JLabel();
-			getContentPane().add(lblPreu);
-			lblPreu.setText("Preu");
-			lblPreu.setBounds(40, 80, 100, 16);
-			lblPreu.setFont(font);
+			// Etiqueta de DNI
+			lblDNI = new JLabel();
+			getContentPane().add(lblDNI);
+			lblDNI.setText("DNI");
+			lblDNI.setBounds(40, 80, 100, 16);
+			lblDNI.setFont(font);
 
-			// Etiqueta de proveidr
-			lblProveidor = new JLabel();
-			getContentPane().add(lblProveidor);
-			lblProveidor.setText("Proveidor");
-			lblProveidor.setBounds(40, 110, 100, 16);
-			lblProveidor.setFont(font);
+			// Etiqueta de tenda
+			lblTenda = new JLabel();
+			getContentPane().add(lblTenda);
+			lblTenda.setText("IDTenda");
+			lblTenda.setBounds(40, 110, 100, 16);
+			lblTenda.setFont(font);
 
-			// Etiquesta de genere
-			lblGenere = new JLabel();
-			getContentPane().add(lblGenere);
-			lblGenere.setText("Genere");
-			lblGenere.setBounds(40, 140, 100, 16);
-			lblGenere.setFont(font);
+			// Etiqueta del numero de la seguretat social
+			lblSS = new JLabel();
+			getContentPane().add(lblSS);
+			lblSS.setText("SS");
+			lblSS.setBounds(40, 140, 100, 16);
+			lblSS.setFont(font);
 
-			// Camp que guarda el nom del joc
+			// Camp per introduir el nom
 			txtNom = new JTextField();
 			getContentPane().add(txtNom);
 			txtNom.setBounds(138, 50, 228, 23);
 
-			// Camp que guarda el preu
-			txtPreu = new JTextField();
-			getContentPane().add(txtPreu);
-			txtPreu.setBounds(138, 80, 228, 23);
+			// Camp per introduir el DNI
+			txtDNI = new JTextField();
+			getContentPane().add(txtDNI);
+			txtDNI.setBounds(138, 80, 228, 23);
 
-			// Camp que guarda el proveidor
-			txtProveidor = new JTextField();
-			getContentPane().add(txtProveidor);
-			txtProveidor.setBounds(138, 110, 228, 23);
+			// Camp per introduir la tenda
+			txtTenda = new JTextField();
+			getContentPane().add(txtTenda);
+			txtTenda.setBounds(138, 110, 228, 23);
 
-			// Camp que guarda el genere
-			txtGenere = new JTextField();
-			getContentPane().add(txtGenere);
-			txtGenere.setBounds(138, 140, 228, 23);
+			// Camp per introduir el numero de la seguretat social
+			txtSS = new JTextField();
+			getContentPane().add(txtSS);
+			txtSS.setBounds(138, 140, 228, 23);
 
 			// Botó guardar
 			btnGuardar = new JButton();
@@ -159,36 +165,39 @@ public class UIJocsNou extends JDialog implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getActionCommand().equals("modificar")) {
-			Joc joc = new Joc(Integer.parseInt(dades[0]), txtNom.getText(),
-					txtProveidor.getText(),
-					Float.parseFloat(txtPreu.getText()), txtGenere.getText());
-			if (BD.updateJoc(joc)) {
+			Empleat empleat = new Empleat(Integer.parseInt(dades[0]),
+					txtNom.getText(), txtSS.getText(), txtDNI.getText(),
+					Integer.parseInt(txtTenda.getText()));
+			if (BD.updateEmpleat(empleat)) {
 				this.dispose();
 				parent.dispose();
-				UIJocs inst = new UIJocs();
+				UIEmpleats inst = new UIEmpleats();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			} else {
 				ErrorDialog error = new ErrorDialog(this,
-						"Error al modificar joc");
+						"Error al modificar empleat");
 				error.setLocationRelativeTo(null);
 				error.setVisible(true);
 			}
 		} else {
-			Joc joc = new Joc(0, txtNom.getText(), txtProveidor.getText(),
-					Float.parseFloat(txtPreu.getText()), txtGenere.getText());
-			if (BD.addJoc(joc)) {
+			Empleat treballador = new Empleat(0, txtNom.getText(),
+					txtSS.getText(), txtDNI.getText(),
+					Integer.parseInt(txtTenda.getText()));
+			if (BD.addEmpleat(treballador)) {
 				this.dispose();
 				parent.dispose();
-				UIJocs inst = new UIJocs();
+				UIEmpleats inst = new UIEmpleats();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			} else {
-				ErrorDialog error = new ErrorDialog(this, "Error al crear joc");
+				ErrorDialog error = new ErrorDialog(this,
+						"Error al crear empleat");
 				error.setLocationRelativeTo(null);
 				error.setVisible(true);
 			}
 		}
+
 	}
 
 }

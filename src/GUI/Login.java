@@ -5,9 +5,12 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.net.URL;
 
 import javax.swing.JButton;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -16,21 +19,31 @@ import javax.swing.WindowConstants;
 
 import main.BD;
 
+/**
+ * 
+ * @author Ruben Macias i Albert Llauradó
+ * 
+ */
 @SuppressWarnings("serial")
 public class Login extends JFrame implements ActionListener {
-	private JPasswordField txtPass;
-	private JTextField txtUser;
-	private JButton btnEntrar;
-	private JLabel lblTitol;
-	private JLabel lblPass;
-	private JLabel lblUser;
-	private Font font;
-	private BD bd;
+	private JPasswordField 	txtPass;
+	private JTextField 		txtUser;
+	private JButton 		btnEntrar;
+	private JLabel 			lblTitol;
+	private JLabel 			lblPass;
+	private JLabel 			lblUser;
+	private URL 			imageURL = ClassLoader.getSystemResource("img/logo.png");
+	private Icon 			icon = new ImageIcon(imageURL);
+	private Font 			font;
+	private BD 				bd;
 
 	public Login() {
-		super("Inici de Sessió");
+		super("Let's Play");
 		try {
-			font = Font.createFont(Font.TRUETYPE_FONT, new File("src/res/avant.ttf")).deriveFont(Font.BOLD, 16);
+			// Instanciem la font
+			font = Font.createFont(Font.TRUETYPE_FONT,
+					new File("src/res/avant.ttf")).deriveFont(Font.BOLD, 16);
+			// Fons
 			JLabel bg = new JLabel();
 			setContentPane(bg);
 			setBackground(new Color(140, 210, 228));
@@ -40,44 +53,44 @@ public class Login extends JFrame implements ActionListener {
 			// TextField que guarda el nom de l'usuari
 			txtUser = new JTextField();
 			getContentPane().add(txtUser);
-			txtUser.setBounds(98, 37, 185, 23);
+			txtUser.setBounds(125, 49, 185, 23);
 
-			// TextField que guarda el password del usuari
+			// TextField que guarda la contrasenya del usuari
 			txtPass = new JPasswordField();
 			getContentPane().add(txtPass);
-			txtPass.setBounds(98, 65, 185, 23);
+			txtPass.setBounds(125, 84, 185, 23);
 
-			// Etiqueta de login
+			// Etiqueta de nom d'usuari
 			lblUser = new JLabel();
 			getContentPane().add(lblUser);
 			lblUser.setText("Usuari");
-			lblUser.setBounds(18, 40, 74, 16);
+			lblUser.setBounds(30, 52, 74, 16);
 			lblUser.setFont(font);
 
-			// Etiqueta del password
+			// Etiqueta de contrasenya
 			lblPass = new JLabel();
 			getContentPane().add(lblPass);
 			lblPass.setText("Clau");
-			lblPass.setBounds(18, 68, 74, 16);
+			lblPass.setBounds(30, 87, 74, 16);
 			lblPass.setFont(font);
 
 			// Etiqueta títol
 			lblTitol = new JLabel();
 			getContentPane().add(lblTitol);
-			lblTitol.setText("Introdueix les dades de l'usuari");
-			lblTitol.setBounds(72, 12, 211, 16);
+			lblTitol.setIcon(icon);
+			lblTitol.setBounds(12, 0, 310, 40);
 			lblTitol.setFont(font);
 
 			// Botó per verificar el login
 			btnEntrar = new JButton();
 			getContentPane().add(btnEntrar);
 			btnEntrar.setText("Accedir al programa");
-			btnEntrar.setBounds(18, 96, 265, 23);
+			btnEntrar.setBounds(12, 124, 311, 23);
 			btnEntrar.addActionListener(this);
 			btnEntrar.setFont(font);
 
 			pack();
-			this.setSize(340, 180);
+			this.setSize(350, 200);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -85,7 +98,6 @@ public class Login extends JFrame implements ActionListener {
 
 	/**
 	 * Metode principal
-	 * @param args
 	 */
 	public static void main(String[] args) {
 		Login inst = new Login();
@@ -93,6 +105,7 @@ public class Login extends JFrame implements ActionListener {
 		inst.setVisible(true);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	/**
 	 * Metode que s'executara al ingresar un usuari i una contrasenya
@@ -115,7 +128,7 @@ public class Login extends JFrame implements ActionListener {
 					missatge = new String("Ja estas conectat");
 					break;
 				}
-				ErrorDialog error = new ErrorDialog(this, true, missatge);
+				ErrorDialog error = new ErrorDialog(this, missatge);
 				error.setLocationRelativeTo(null);
 				error.setVisible(true);
 			} else {
@@ -125,10 +138,13 @@ public class Login extends JFrame implements ActionListener {
 				menu.setLocationRelativeTo(null);
 				menu.setVisible(true);
 			}
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch  (IllegalAccessException e){
-			e.printStackTrace();
+			// Si falla per algun motiu no controlar creem un dialog indicant
+			// que no podem accedir a l'aplicatiu
+		} catch (Exception e) {
+			ErrorDialog error = new ErrorDialog(this,
+					"Error al accedir a l'aplicatiu");
+			error.setLocationRelativeTo(null);
+			error.setVisible(true);
 		}
 	}
 }

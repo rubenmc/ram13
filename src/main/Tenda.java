@@ -1,26 +1,34 @@
 package main;
 
+/**
+ * 
+ * @author Ruben Macias i Albert Llauradó
+ * 
+ */
 public class Tenda {
 
-	private int id;
-	private String direccio;
-	private String telefon;
+	private int 	id;
+	private String 	direccio;
+	private String 	telefon;
 
 	// Constructor
 	/**
 	 * @param id
+	 *            L'identificador de la tenda
 	 * @param direccio
+	 *            La direcció de la tenda
 	 * @param telefon
+	 *            El telefon de la tenda
 	 */
 	public Tenda(int id, String direccio, String telefon) {
-		this.id = id;
-		this.direccio = direccio;
-		this.telefon = telefon;
+		this.id 		= id;
+		this.direccio 	= direccio;
+		this.telefon 	= telefon;
 	}
 
 	// Getters i Setters
 	/**
-	 * @return the id
+	 * @return L'id
 	 */
 	public int getId() {
 		return id;
@@ -28,14 +36,14 @@ public class Tenda {
 
 	/**
 	 * @param id
-	 *            the id to set
+	 *            El nou id
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the direccio
+	 * @return La direcció
 	 */
 	public String getDireccio() {
 		return direccio;
@@ -43,14 +51,14 @@ public class Tenda {
 
 	/**
 	 * @param direccio
-	 *            the direccio to set
+	 *            La nova direcció
 	 */
 	public void setDireccio(String direccio) {
 		this.direccio = direccio;
 	}
 
 	/**
-	 * @return the telefon
+	 * @return El telefon
 	 */
 	public String getTelefon() {
 		return telefon;
@@ -58,7 +66,7 @@ public class Tenda {
 
 	/**
 	 * @param telefon
-	 *            the telefon to set
+	 *            El nou telefon
 	 */
 	public void setTelefon(String telefon) {
 		this.telefon = telefon;

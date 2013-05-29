@@ -4,18 +4,36 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * 
+ * @author Ruben Macias i Albert Llauradó
+ * 
+ */
 public class Compra {
 
-	private int id;
-	private String client;
-	private int venedor;
-	private Unitat[] articles;
-	private float preu;
-	private Date data;
-	SimpleDateFormat formateador = new SimpleDateFormat(
+	private int 		id;
+	private String 		client;
+	private int 		venedor;
+	private Unitat[] 	articles;
+	private float 		preu;
+	private Date 		data;
+	SimpleDateFormat 	formateador = new SimpleDateFormat(
 			"d 'de' MMMM 'de' yyyy - HH:mm", new Locale("es"));
 
 	// Constructor
+	/**
+	 * 
+	 * @param id
+	 *            L'identificador de la compra
+	 * @param client
+	 *            L'identificador del client
+	 * @param venedor
+	 *            L'identificador del venedor
+	 * @param article
+	 *            L'identificador de l'article venut
+	 * @param data
+	 *            La data de la compra
+	 */
 	public Compra(int id, String client, int venedor, Unitat[] article,
 			Date data) {
 		this.id = id;
@@ -23,22 +41,11 @@ public class Compra {
 		this.venedor = venedor;
 		this.articles = article;
 		this.data = data;
-		calculaPreu(article);
-	}
-
-	/**
-	 * @param article
-	 *            calculate de preu
-	 */
-	private void calculaPreu(Unitat[] article) {
-		for (int x = 0; x < article.length; x++) {
-			preu += article[x].getPreu();
-		}
 	}
 
 	// Getters i Setters
 	/**
-	 * @return the id
+	 * @return L'id
 	 */
 	public int getId() {
 		return id;
@@ -46,14 +53,14 @@ public class Compra {
 
 	/**
 	 * @param id
-	 *            the id to set
+	 *            El nou id
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the client
+	 * @return El client
 	 */
 	public String getClient() {
 		return client;
@@ -61,14 +68,14 @@ public class Compra {
 
 	/**
 	 * @param client
-	 *            the client to set
+	 *            El nou client
 	 */
 	public void setClient(String client) {
 		this.client = client;
 	}
 
 	/**
-	 * @return the venedor
+	 * @return El venedor
 	 */
 	public int getVenedor() {
 		return venedor;
@@ -76,14 +83,14 @@ public class Compra {
 
 	/**
 	 * @param venedor
-	 *            the venedor to set
+	 *            El nou venedor
 	 */
 	public void setVenedor(int venedor) {
 		this.venedor = venedor;
 	}
 
 	/**
-	 * @return the article
+	 * @return L'article
 	 */
 	public Unitat[] getArticle() {
 		return articles;
@@ -91,14 +98,14 @@ public class Compra {
 
 	/**
 	 * @param article
-	 *            the article to set
+	 *            El nou article
 	 */
 	public void setArticle(Unitat[] article) {
 		this.articles = article;
 	}
 
 	/**
-	 * @return the preu
+	 * @return El preu
 	 */
 	public float getPreu() {
 		return preu;
@@ -106,14 +113,14 @@ public class Compra {
 
 	/**
 	 * @param preu
-	 *            the preu to set
+	 *            El nou preu
 	 */
 	public void setPreu(float preu) {
 		this.preu = preu;
 	}
 
 	/**
-	 * @return the data
+	 * @return La data
 	 */
 	public Date getData() {
 		return data;
@@ -121,7 +128,7 @@ public class Compra {
 
 	/**
 	 * @param data
-	 *            the data to set
+	 *            La nova data
 	 */
 	public void setData(Date data) {
 		this.data = data;
@@ -137,8 +144,8 @@ public class Compra {
 				+ venedor + "\nClient-->" + client + "\nPreu-->" + preu
 				+ "\nData-->" + formateador.format(data) + "\nArticles:");
 		for (int x = 0; x < articles.length; x++) {
-			System.out.println(articles[x].getId() + "." + articles[x].getJoc()
-					+ " - " + articles[x].getPreu());
+			System.out
+					.println(articles[x].getId() + "." + articles[x].getJoc());
 		}
 	}
 

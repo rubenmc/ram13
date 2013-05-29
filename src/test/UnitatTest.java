@@ -10,7 +10,7 @@ public class UnitatTest {
 	public static void main(String[] args) {
 
 		Proveidor proveidor = new Proveidor("0", "Proveidor_Test", "977456123",
-				"6543434", "algo@algo.com", "Pepito", "53467-354385438-354354");
+				"6543434", "algo@algo.com","53467-354385438-354354");
 
 		Joc joc = new Joc(0, "Tetris", proveidor.getId(), 70, "Genere");
 

@@ -1,5 +1,10 @@
 package main;
 
+/**
+ * 
+ * @author Ruben Macias i Albert Llauradó
+ * 
+ */
 public abstract class Persona {
 
 	private String id;
@@ -11,21 +16,25 @@ public abstract class Persona {
 	// Constructor
 	/**
 	 * @param nom
+	 *            El nom de la persona
 	 * @param telf
+	 *            El telefon de la persona
 	 * @param NIF
+	 *            El NIF de la persona
 	 * @param mail
+	 *            El mail de la persona
 	 */
 	public Persona(String id, String nom, String telf, String NIF, String mail) {
-		this.id = id;
-		this.nom = nom;
-		this.telf = telf;
-		this.NIF = NIF;
-		this.mail = mail;
+		this.id 	= id;
+		this.nom 	= nom;
+		this.telf 	= telf;
+		this.NIF 	= NIF;
+		this.mail 	= mail;
 	}
 
 	// Getters i Setters
 	/**
-	 * @return the id
+	 * @return L'id
 	 */
 	public String getId() {
 		return id;
@@ -33,14 +42,14 @@ public abstract class Persona {
 
 	/**
 	 * @param id
-	 *            the id to set
+	 *            El nou id
 	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the nom
+	 * @return El nom
 	 */
 	public String getNom() {
 		return nom;
@@ -48,14 +57,14 @@ public abstract class Persona {
 
 	/**
 	 * @param nom
-	 *            the nom to set
+	 *            El nou nom
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
 	/**
-	 * @return the telf
+	 * @return El telefon
 	 */
 	public String getTelf() {
 		return telf;
@@ -63,29 +72,29 @@ public abstract class Persona {
 
 	/**
 	 * @param telf
-	 *            the telf to set
+	 *            El nou telefon
 	 */
 	public void setTelf(String telf) {
 		this.telf = telf;
 	}
 
 	/**
-	 * @return the nIF
+	 * @return El nIF
 	 */
 	public String getNIF() {
 		return NIF;
 	}
 
 	/**
-	 * @param nIF
-	 *            the nIF to set
+	 * @param NIF
+	 *            El nou NIF
 	 */
-	public void setNIF(String nIF) {
-		NIF = nIF;
+	public void setNIF(String NIF) {
+		this.NIF = NIF;
 	}
 
 	/**
-	 * @return the mail
+	 * @return El mail
 	 */
 	public String getMail() {
 		return mail;
@@ -93,7 +102,7 @@ public abstract class Persona {
 
 	/**
 	 * @param mail
-	 *            the mail to set
+	 *            El nou mail
 	 */
 	public void setMail(String mail) {
 		this.mail = mail;

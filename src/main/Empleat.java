@@ -1,36 +1,42 @@
 package main;
 
+/**
+ * 
+ * @author Ruben Macias i Albert Llauradó
+ * 
+ */
 public class Empleat {
 
-	private int id;
-	private int vendes;
-	private String nom;
-	private String SS;
-	private String DNI;
-	private int tenda;
+	private String 	nom;
+	private String 	SS;
+	private String 	DNI;
+	private int 	tenda;
+	private int 	id;
 
 	// Constructor
 	/**
 	 * @param id
-	 * @param vendes
+	 *            L'identificador de l'empleat
 	 * @param nom
+	 *            El nom de l'empleat
 	 * @param SS
+	 *            El numero de la seguretat social de l'empleat
 	 * @param DNI
+	 *            El DNI de l'empleat
 	 * @param tenda
+	 *            L'identificador de la tenda de l'empleat
 	 */
-	public Empleat(int id, int vendes, String nom, String SS, String DNI,
-			int tenda) {
-		this.id = id;
-		this.vendes = vendes;
-		this.nom = nom;
-		this.SS = SS;
-		this.DNI = DNI;
-		this.tenda = tenda;
+	public Empleat(int id, String nom, String SS, String DNI, int tenda) {
+		this.id 	= id;
+		this.nom 	= nom;
+		this.SS 	= SS;
+		this.DNI 	= DNI;
+		this.tenda 	= tenda;
 	}
 
 	// Getters i Setters
 	/**
-	 * @return the id
+	 * @return L'id
 	 */
 	public int getId() {
 		return id;
@@ -38,29 +44,14 @@ public class Empleat {
 
 	/**
 	 * @param id
-	 *            the id to set
+	 *            El nou id
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the vendes
-	 */
-	public int getVendes() {
-		return vendes;
-	}
-
-	/**
-	 * @param vendes
-	 *            the vendes to set
-	 */
-	public void setVendes(int vendes) {
-		this.vendes = vendes;
-	}
-
-	/**
-	 * @return the nom
+	 * @return El nom
 	 */
 	public String getNom() {
 		return nom;
@@ -68,44 +59,44 @@ public class Empleat {
 
 	/**
 	 * @param nom
-	 *            the nom to set
+	 *            El nou nom
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
 	/**
-	 * @return the sS
+	 * @return El numero de la seguretat social
 	 */
 	public String getSS() {
 		return SS;
 	}
 
 	/**
-	 * @param sS
-	 *            the sS to set
+	 * @param SS
+	 *            El nou numero de la seguretat social
 	 */
-	public void setSS(String sS) {
-		SS = sS;
+	public void setSS(String SS) {
+		this.SS = SS;
 	}
 
 	/**
-	 * @return the dNI
+	 * @return El DNI
 	 */
 	public String getDNI() {
 		return DNI;
 	}
 
 	/**
-	 * @param dNI
-	 *            the dNI to set
+	 * @param DNI
+	 *            El nou DNI
 	 */
-	public void setDNI(String dNI) {
-		DNI = dNI;
+	public void setDNI(String DNI) {
+		this.DNI = DNI;
 	}
 
 	/**
-	 * @return the tenda
+	 * @return La tenda
 	 */
 	public int getTenda() {
 		return tenda;
@@ -113,7 +104,7 @@ public class Empleat {
 
 	/**
 	 * @param tenda
-	 *            the tenda to set
+	 *            La nova tenda
 	 */
 	public void setTenda(int tenda) {
 		this.tenda = tenda;
@@ -126,8 +117,7 @@ public class Empleat {
 
 	public void display() {
 		System.out.println("\nDades de l'empleat " + nom + "\nNº SS-->" + SS
-				+ "\nDNI-->" + DNI + "\nTenda-->" + tenda + "\nVendes-->"
-				+ vendes);
+				+ "\nDNI-->" + DNI + "\nTenda-->" + tenda);
 	}
 
 }

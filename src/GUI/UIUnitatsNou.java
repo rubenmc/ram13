@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import main.BD;
-import main.Tenda;
+import main.Unitat;
 
 @SuppressWarnings("serial")
 /**
@@ -22,53 +22,53 @@ import main.Tenda;
  * @author Ruben Macias i Albert Llauradó
  *
  */
-public class UITendesNou extends JDialog implements ActionListener {
-	private JTextField 	txtDireccio;
-	private JTextField 	txtTelefon;
+public class UIUnitatsNou extends JDialog implements ActionListener {
+	private JTextField 	txtTenda;
+	private JTextField 	txtJoc;
 	private JButton 	btnGuardar;
 	private JLabel 		lblTitol;
-	private JLabel 		lblDireccio;
-	private JLabel 		lblTelefon;
+	private JLabel 		lblTenda;
+	private JLabel 		lblJoc;
 	private Font 		font;
 	private Frame 		parent;
 	private String[] 	dades;
 
 	/**
-	 * Constructor per una nova entrada
+	 * Constructor per a una nova entrada
 	 * 
 	 * @param parent
 	 *            Frame del pare
 	 */
-	public UITendesNou(Frame parent) {
-		super(parent, "Nova tenda");
+	public UIUnitatsNou(Frame parent) {
+		super(parent, "Nova unitat");
 		// Carreguem la interficie
 		carregarGUI();
 		this.parent = parent;
 		// Modifiquem el titol
-		lblTitol.setText("Nova tenda");
+		lblTitol.setText("Nova unitat");
 	}
 
 	/**
-	 * Constructor per a editar un registre
+	 * Constructor per editar un registre
 	 * 
 	 * @param parent
 	 *            Frame del pare
 	 * @param dades
 	 *            Dades actuals del registre
 	 */
-	public UITendesNou(Frame parent, String[] dades) {
-		super(parent, "Modificar tenda");
+	public UIUnitatsNou(Frame parent, String[] dades) {
+		super(parent, "Modificar unitat");
 		// Carreguem la interficie
 		carregarGUI();
 		this.parent = parent;
 		this.dades = dades;
-		// Assignem les dades al camp de text corresponent
-		txtDireccio.setText(dades[1]);
-		txtTelefon.setText(dades[2]);
+		// Assignem les dades al seu camp de text corresponent
+		txtTenda.setText(dades[1]);
+		txtJoc.setText(dades[2]);
 		// Indiquem que es una modificació
 		btnGuardar.setActionCommand("modificar");
 		// Modifiquem el titol
-		lblTitol.setText("Modificar tenda");
+		lblTitol.setText("Modificar unitat");
 	}
 
 	/**
@@ -93,29 +93,29 @@ public class UITendesNou extends JDialog implements ActionListener {
 			getContentPane().add(lblTitol);
 			lblTitol.setBounds(12, 12, 354, 16);
 
-			// Etiqueta de direcció
-			lblDireccio = new JLabel();
-			getContentPane().add(lblDireccio);
-			lblDireccio.setText("Direcció");
-			lblDireccio.setBounds(40, 50, 100, 16);
-			lblDireccio.setFont(font);
+			// Etiqueta de tenda
+			lblTenda = new JLabel();
+			getContentPane().add(lblTenda);
+			lblTenda.setText("Tenda");
+			lblTenda.setBounds(40, 50, 100, 16);
+			lblTenda.setFont(font);
 
-			// Camp que guarda la direcció
-			txtDireccio = new JTextField();
-			getContentPane().add(txtDireccio);
-			txtDireccio.setBounds(138, 50, 228, 23);
+			// Camp que guarda l'identificador de la tenda
+			txtTenda = new JTextField();
+			getContentPane().add(txtTenda);
+			txtTenda.setBounds(138, 50, 228, 23);
 
-			// Etiqueta de telefon
-			lblTelefon = new JLabel();
-			getContentPane().add(lblTelefon);
-			lblTelefon.setText("Telefon");
-			lblTelefon.setBounds(40, 80, 100, 16);
-			lblTelefon.setFont(font);
+			// Etiqueta de joc
+			lblJoc = new JLabel();
+			getContentPane().add(lblJoc);
+			lblJoc.setText("Joc");
+			lblJoc.setBounds(40, 80, 100, 16);
+			lblJoc.setFont(font);
 
-			// Camp que guarda el telefon
-			txtTelefon = new JTextField();
-			getContentPane().add(txtTelefon);
-			txtTelefon.setBounds(138, 80, 228, 23);
+			// Camp que guarda l'identificador del joc
+			txtJoc = new JTextField();
+			getContentPane().add(txtJoc);
+			txtJoc.setBounds(138, 80, 228, 23);
 
 			// Botó guardar
 			btnGuardar = new JButton();
@@ -138,36 +138,36 @@ public class UITendesNou extends JDialog implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getActionCommand().equals("modificar")) {
-			Tenda tenda = new Tenda(Integer.parseInt(dades[0]),
-					txtDireccio.getText(), txtTelefon.getText());
-			if (BD.updateTenda(tenda)) {
+			Unitat unitat = new Unitat(Integer.parseInt(dades[0]),
+					Integer.parseInt(txtTenda.getText()),
+					Integer.parseInt(txtJoc.getText()));
+			if (BD.updateUnitat(unitat)) {
 				this.dispose();
 				parent.dispose();
-				UITendes inst = new UITendes();
+				UIUnitats inst = new UIUnitats();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			} else {
 				ErrorDialog error = new ErrorDialog(this,
-						"Error al modificar tenda");
+						"Error al modificar unitat");
 				error.setLocationRelativeTo(null);
 				error.setVisible(true);
 			}
 		} else {
-			Tenda tenda = new Tenda(0, txtDireccio.getText(),
-					txtTelefon.getText());
-			if (BD.addTenda(tenda)) {
+			Unitat unitat = new Unitat(0, Integer.parseInt(txtTenda.getText()),
+					Integer.parseInt(txtJoc.getText()));
+			if (BD.addUnitat(unitat)) {
 				this.dispose();
 				parent.dispose();
-				UITendes inst = new UITendes();
+				UIUnitats inst = new UIUnitats();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			} else {
 				ErrorDialog error = new ErrorDialog(this,
-						"Error al crear tenda");
+						"Error al crear unitat");
 				error.setLocationRelativeTo(null);
 				error.setVisible(true);
 			}
 		}
 	}
-
 }

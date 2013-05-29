@@ -8,7 +8,7 @@ import main.Particular;
 
 public class TestAutoID {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		BD bd = new BD();
 		Date now = new Date();
 
@@ -19,7 +19,7 @@ public class TestAutoID {
 					"ParticularAutoID", "977159753", "399876543S",
 					"auto@id.com", new java.sql.Date(now.getTime()));
 
-			BD.afegeixParticular(particular);
+			BD.addParticular(particular);
 
 			System.out.println("YIJA");
 

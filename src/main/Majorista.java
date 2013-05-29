@@ -1,11 +1,31 @@
 package main;
 
-public class Mayorista extends Persona {
+/**
+ * 
+ * @author Ruben Macias i Albert Llauradó
+ * 
+ */
+public class Majorista extends Persona {
 
 	private String personaContacte;
 
 	// Constructor
-	public Mayorista(String id, String nom, String telf, String NIF,
+	/**
+	 * 
+	 * @param id
+	 *            L'identificador del majorista
+	 * @param nom
+	 *            El nom del majorista
+	 * @param telf
+	 *            El telefon del majorista
+	 * @param NIF
+	 *            El NIF del majorista
+	 * @param mail
+	 *            El mail del majorista
+	 * @param persona
+	 *            La persona de contacte del majorista
+	 */
+	public Majorista(String id, String nom, String telf, String NIF,
 			String mail, String persona) {
 		super(id, nom, telf, NIF, mail);
 		this.personaContacte = persona;
@@ -13,7 +33,7 @@ public class Mayorista extends Persona {
 
 	// Getters i Setters
 	/**
-	 * @return the personaContacte
+	 * @return La persona de contacte
 	 */
 	public String getPersonaContacte() {
 		return personaContacte;
@@ -21,7 +41,7 @@ public class Mayorista extends Persona {
 
 	/**
 	 * @param personaContacte
-	 *            the personaContacte to set
+	 *            La nova persona de contacte
 	 */
 	public void setPersonaContacte(String personaContacte) {
 		this.personaContacte = personaContacte;

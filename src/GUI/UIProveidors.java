@@ -25,23 +25,23 @@ import main.BD;
  * @author Ruben Macias i Albert Llauradó
  *
  */
-public class UIComandes extends JFrame implements ActionListener {
+public class UIProveidors extends JFrame implements ActionListener {
 	private JLabel 		lblTitol;
 	private JButton 	btnEditar;
 	private JButton 	btnTornar;
 	private JButton 	btnEliminar;
 	private JButton 	btnNou;
-	private Taula 		comandes;
+	private Taula 		proveidors;
 	private Insets 		scnMax = getToolkit().getScreenInsets(getGraphicsConfiguration());
 	private int 		taskBarSize = scnMax.bottom;
 	private Dimension 	pantalla = getToolkit().getScreenSize();
-	private URL 		imageURL = ClassLoader.getSystemResource("img/comandes.png");
+	private URL 		imageURL = ClassLoader.getSystemResource("img/jocs.png");
 	private URL 		imageURLbg = ClassLoader.getSystemResource("img/fondo.png");
 	private Icon 		icon = new ImageIcon(imageURL);
 	private Icon 		bgimg = new ImageIcon(imageURLbg);
 	private Font 		font;
 
-	public UIComandes() {
+	public UIProveidors() {
 		try {
 			// Instanciem la font
 			font = Font.createFont(Font.TRUETYPE_FONT,
@@ -55,7 +55,6 @@ public class UIComandes extends JFrame implements ActionListener {
 
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
-			// Calculem i ajustem la finestra
 			calculateLocation();
 			setBackground(new Color(140, 210, 228));
 
@@ -67,30 +66,30 @@ public class UIComandes extends JFrame implements ActionListener {
 					pantalla.width / 2, 60);
 			lblTitol.setHorizontalAlignment(SwingConstants.CENTER);
 
-			// Taula per veure les comandes de la BD
-			comandes = BD.getDades("comandes", pantalla.width, pantalla.height
-					- taskBarSize);
-			if (comandes != null) {
-				comandes.setBackground(new Color(140, 210, 228));
-				comandes.setBounds(0, pantalla.height / 4, pantalla.width,
-						comandes.getTableHeight());
-				add(comandes);
+			// Taula per veure els proveidors de la BD
+			proveidors = BD.getDades("proveidors", pantalla.width,
+					pantalla.height - taskBarSize);
+			if (proveidors != null) {
+				proveidors.setBackground(new Color(140, 210, 228));
+				proveidors.setBounds(0, pantalla.height / 4, pantalla.width,
+						proveidors.getTableHeight());
+				add(proveidors);
 			}
 
-			// Boto per afegir una nova comanda
+			// Boto per afegir un nou proveidor
 			btnNou = new JButton();
 			getContentPane().add(btnNou);
-			btnNou.setText("Nova comanda");
+			btnNou.setText("Nou");
 			btnNou.setBounds(0, (int) ((pantalla.height - taskBarSize) / 1.25),
 					pantalla.width / 4, (pantalla.height - taskBarSize) / 10);
 			btnNou.addActionListener(this);
 			btnNou.setActionCommand("btnNou");
 			btnNou.setFont(font);
 
-			// Boto per eliminar una comanda
+			// Boto per eliminar un proveidor
 			btnEliminar = new JButton();
 			getContentPane().add(btnEliminar);
-			btnEliminar.setText("Eliminar comanda");
+			btnEliminar.setText("Eliminar");
 			btnEliminar.setBounds(pantalla.width / 4,
 					(int) ((pantalla.height - taskBarSize) / 1.25),
 					pantalla.width / 4, (pantalla.height - taskBarSize) / 10);
@@ -98,10 +97,10 @@ public class UIComandes extends JFrame implements ActionListener {
 			btnEliminar.setActionCommand("btnEliminar");
 			btnEliminar.setFont(font);
 
-			// Boto per editar una comanda
+			// Boto per editar un proveidor
 			btnEditar = new JButton();
 			getContentPane().add(btnEditar);
-			btnEditar.setText("Editar comanda");
+			btnEditar.setText("Editar");
 			btnEditar.setBounds((pantalla.width / 4) * 2,
 					(int) ((pantalla.height - taskBarSize) / 1.25),
 					pantalla.width / 4, (pantalla.height - taskBarSize) / 10);
@@ -132,10 +131,62 @@ public class UIComandes extends JFrame implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("btnNou")) {
-			UIComandesNou inst = new UIComandesNou(this, true);
+			UIProveidorsNou inst = new UIProveidorsNou(this);
 			inst.setLocationRelativeTo(null);
 			inst.setVisible(true);
+		} else if (e.getActionCommand().equals("btnEditar")) {
+			if (proveidors != null) {
+				// Busquem el primer client seleccionat i obrim un dialog per
+				// editar-lo
+				boolean fi = false;
+				for (int x = 0; x < proveidors.getTableModel().getRowCount()
+						&& !fi; x++) {
+					boolean check = (boolean) proveidors.getTableModel()
+							.getValueAt(x, 6);
+					if (check) {
+						String[] dades = new String[6];
+						dades[0] = proveidors.getTableModel().getValueAt(x, 0)
+								.toString();// id
+						dades[1] = proveidors.getTableModel().getValueAt(x, 1)
+								.toString();// nom
+						dades[2] = proveidors.getTableModel().getValueAt(x, 2)
+								.toString();// telf
+						dades[3] = proveidors.getTableModel().getValueAt(x, 3)
+								.toString();// nif
+						dades[4] = proveidors.getTableModel().getValueAt(x, 4)
+								.toString();// mail
+						dades[5] = proveidors.getTableModel().getValueAt(x, 5)
+								.toString();// compte
+						UIProveidorsNou inst = new UIProveidorsNou(this, dades);
+						inst.setLocationRelativeTo(null);
+						inst.setVisible(true);
+						fi = true;
+					}
+				}
+			}
+		} else if (e.getActionCommand().equals("btnEliminar")) {
+			if (proveidors != null) {
+				for (int x = 0; x < proveidors.getTableModel().getRowCount(); x++) {
+					boolean check = (boolean) proveidors.getTableModel()
+							.getValueAt(x, 6);
+					if (check) {
+						if (BD.deleteProveidor(proveidors.getTableModel()
+								.getValueAt(x, 0).toString())) {
+							this.dispose();
+							UIProveidors inst = new UIProveidors();
+							inst.setLocationRelativeTo(null);
+							inst.setVisible(true);
+						} else {
+							ErrorDialog error = new ErrorDialog(this,
+									"Error al eliminar el proveidor");
+							error.setLocationRelativeTo(null);
+							error.setVisible(true);
+						}
+					}
+				}
+			}
 		} else if (e.getActionCommand().equals("btnTornar")) {
+
 			this.dispose();
 			Menu inst = new Menu();
 			inst.setLocationRelativeTo(null);

@@ -25,23 +25,23 @@ import main.BD;
  * @author Ruben Macias i Albert Llauradó
  *
  */
-public class UIComandes extends JFrame implements ActionListener {
-	private JLabel 		lblTitol;
+public class UIEmpleats extends JFrame implements ActionListener {
 	private JButton 	btnEditar;
 	private JButton 	btnTornar;
 	private JButton 	btnEliminar;
 	private JButton 	btnNou;
-	private Taula 		comandes;
+	private JLabel 		lblTitol;
+	private Taula 		empleats;
 	private Insets 		scnMax = getToolkit().getScreenInsets(getGraphicsConfiguration());
 	private int 		taskBarSize = scnMax.bottom;
 	private Dimension 	pantalla = getToolkit().getScreenSize();
-	private URL 		imageURL = ClassLoader.getSystemResource("img/comandes.png");
+	private URL 		imageURL = ClassLoader.getSystemResource("img/empleats.png");
 	private URL 		imageURLbg = ClassLoader.getSystemResource("img/fondo.png");
 	private Icon 		icon = new ImageIcon(imageURL);
 	private Icon 		bgimg = new ImageIcon(imageURLbg);
 	private Font 		font;
 
-	public UIComandes() {
+	public UIEmpleats() {
 		try {
 			// Instanciem la font
 			font = Font.createFont(Font.TRUETYPE_FONT,
@@ -55,7 +55,7 @@ public class UIComandes extends JFrame implements ActionListener {
 
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
-			// Calculem i ajustem la finestra
+			// Calculem i ajustem la mida de la finestra
 			calculateLocation();
 			setBackground(new Color(140, 210, 228));
 
@@ -67,30 +67,30 @@ public class UIComandes extends JFrame implements ActionListener {
 					pantalla.width / 2, 60);
 			lblTitol.setHorizontalAlignment(SwingConstants.CENTER);
 
-			// Taula per veure les comandes de la BD
-			comandes = BD.getDades("comandes", pantalla.width, pantalla.height
+			// Taula per veure els empleats de la BD
+			empleats = BD.getDades("empleats", pantalla.width, pantalla.height
 					- taskBarSize);
-			if (comandes != null) {
-				comandes.setBackground(new Color(140, 210, 228));
-				comandes.setBounds(0, pantalla.height / 4, pantalla.width,
-						comandes.getTableHeight());
-				add(comandes);
+			if (empleats != null) {
+				empleats.setBackground(new Color(140, 210, 228));
+				empleats.setBounds(0, pantalla.height / 4, pantalla.width,
+						empleats.getTableHeight());
+				add(empleats);
 			}
 
-			// Boto per afegir una nova comanda
+			// Boto per afegir un nou empleat
 			btnNou = new JButton();
 			getContentPane().add(btnNou);
-			btnNou.setText("Nova comanda");
+			btnNou.setText("Nou empleat");
 			btnNou.setBounds(0, (int) ((pantalla.height - taskBarSize) / 1.25),
 					pantalla.width / 4, (pantalla.height - taskBarSize) / 10);
 			btnNou.addActionListener(this);
 			btnNou.setActionCommand("btnNou");
 			btnNou.setFont(font);
 
-			// Boto per eliminar una comanda
+			// Boto per eliminar un empleat
 			btnEliminar = new JButton();
 			getContentPane().add(btnEliminar);
-			btnEliminar.setText("Eliminar comanda");
+			btnEliminar.setText("Eliminar empleat");
 			btnEliminar.setBounds(pantalla.width / 4,
 					(int) ((pantalla.height - taskBarSize) / 1.25),
 					pantalla.width / 4, (pantalla.height - taskBarSize) / 10);
@@ -98,10 +98,10 @@ public class UIComandes extends JFrame implements ActionListener {
 			btnEliminar.setActionCommand("btnEliminar");
 			btnEliminar.setFont(font);
 
-			// Boto per editar una comanda
+			// Boto per editar un empleat
 			btnEditar = new JButton();
 			getContentPane().add(btnEditar);
-			btnEditar.setText("Editar comanda");
+			btnEditar.setText("Editar empleat");
 			btnEditar.setBounds((pantalla.width / 4) * 2,
 					(int) ((pantalla.height - taskBarSize) / 1.25),
 					pantalla.width / 4, (pantalla.height - taskBarSize) / 10);
@@ -127,14 +127,61 @@ public class UIComandes extends JFrame implements ActionListener {
 	}
 
 	@Override
-	/**
-	 * Métode que s'executara al fer clic a un botó i que realitzara la acció indicada
-	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("btnNou")) {
-			UIComandesNou inst = new UIComandesNou(this, true);
+			UIEmpleatsNou inst = new UIEmpleatsNou(this);
 			inst.setLocationRelativeTo(null);
 			inst.setVisible(true);
+		} else if (e.getActionCommand().equals("btnEditar")) {
+			if (empleats != null) {
+				// Busquem el primer empleat seleccionat i obrim un dialog per
+				// editar-lo
+				boolean fi = false;
+				for (int x = 0; x < empleats.getTableModel().getRowCount()
+						&& !fi; x++) {
+					boolean check = (boolean) empleats.getTableModel()
+							.getValueAt(x, 5);
+					if (check) {
+						String[] dades = new String[5];
+						dades[0] = empleats.getTableModel().getValueAt(x, 0)
+								.toString();// id
+						dades[1] = empleats.getTableModel().getValueAt(x, 1)
+								.toString();// nom
+						dades[2] = empleats.getTableModel().getValueAt(x, 2)
+								.toString();// ss
+						dades[3] = empleats.getTableModel().getValueAt(x, 3)
+								.toString();// dni
+						dades[4] = empleats.getTableModel().getValueAt(x, 4)
+								.toString();// tenda
+						UIEmpleatsNou inst = new UIEmpleatsNou(this, dades);
+						inst.setLocationRelativeTo(null);
+						inst.setVisible(true);
+						fi = true;
+					}
+				}
+			}
+		} else if (e.getActionCommand().equals("btnEliminar")) {
+			if (empleats != null) {
+				// Busquem tots els empleats seleccionats i els eliminem
+				for (int x = 0; x < empleats.getTableModel().getRowCount(); x++) {
+					boolean check = (boolean) empleats.getTableModel()
+							.getValueAt(x, 5);
+					if (check) {
+						if (BD.deleteEmpleat(empleats.getTableModel()
+								.getValueAt(x, 0).toString())) {
+							this.dispose();
+							UIEmpleats inst = new UIEmpleats();
+							inst.setLocationRelativeTo(null);
+							inst.setVisible(true);
+						} else {
+							ErrorDialog error = new ErrorDialog(this,
+									"Error al eliminar l'empleat");
+							error.setLocationRelativeTo(null);
+							error.setVisible(true);
+						}
+					}
+				}
+			}
 		} else if (e.getActionCommand().equals("btnTornar")) {
 			this.dispose();
 			Menu inst = new Menu();
